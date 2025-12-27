@@ -108,3 +108,34 @@ h6,
 .animate-pulse-soft {
     animation: pulse-soft 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
 }
+
+/* Animaciones de Carga */
+@keyframes fade-in-up {
+    0% {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes loading-bar {
+    0% {
+        transform: translateX(-100%);
+    }
+
+    100% {
+        transform: translateX(100%);
+    }
+}
+
+.animate-fade-in-up {
+    animation: fade-in-up 1.2s ease-out forwards;
+}
+
+.animate-loading-bar {
+    animation: loading-bar 2.5s infinite ease-in-out;
+}

@@ -1,9 +1,10 @@
-import React, { useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
 
 // Componentes
 import Navbar from './components/Navbar';
 import WhatsAppButton from './components/WhatsAppButton';
+import LoadingScreen from './components/LoadingScreen';
 
 // Secciones / Páginas
 import Home from './pages/Home';
@@ -31,25 +32,30 @@ const ScrollToTop = () => {
 };
 
 function App() {
+    const [isLoading, setIsLoading] = useState(true);
+
     return (
-        <Router>
-            <ScrollToTop />
-            <div className="font-sans text-slate-800 bg-white min-h-screen selection:bg-[#c5a67c] selection:text-white flex flex-col">
-                <Navbar />
-                <main className="flex-grow">
-                    <Routes>
-                        <Route path="/" element={<Home />} />
-                        <Route path="/quienes-somos" element={<About />} />
-                        <Route path="/servicios" element={<Services />} />
-                        <Route path="/nuestro-equipo" element={<Team />} />
-                        <Route path="/clientes" element={<Clients />} />
-                        <Route path="/contacto" element={<ContactSection />} />
-                    </Routes>
-                </main>
-                <Footer />
-                <WhatsAppButton />
-            </div>
-        </Router>
+        <>
+            {isLoading && <LoadingScreen onFinished={() => setIsLoading(false)} />}
+            <Router>
+                <ScrollToTop />
+                <div className={`font-sans text-slate-800 bg-white min-h-screen selection:bg-[#c5a67c] selection:text-white flex flex-col transition-opacity duration-700 ${isLoading ? 'opacity-0' : 'opacity-100'}`}>
+                    <Navbar />
+                    <main className="flex-grow">
+                        <Routes>
+                            <Route path="/" element={<Home />} />
+                            <Route path="/quienes-somos" element={<About />} />
+                            <Route path="/servicios" element={<Services />} />
+                            <Route path="/nuestro-equipo" element={<Team />} />
+                            <Route path="/clientes" element={<Clients />} />
+                            <Route path="/contacto" element={<ContactSection />} />
+                        </Routes>
+                    </main>
+                    <Footer />
+                    <WhatsAppButton />
+                </div>
+            </Router>
+        </>
     );
 }
 
