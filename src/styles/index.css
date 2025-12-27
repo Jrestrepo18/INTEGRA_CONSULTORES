@@ -1,0 +1,110 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap');
+@import "tailwindcss";
+
+@layer utilities {
+    .animate-infinite-scroll {
+        animation: infinite-scroll 40s linear infinite;
+    }
+
+    @keyframes infinite-scroll {
+        from {
+            transform: translateX(0);
+        }
+
+        to {
+            transform: translateX(-100%);
+        }
+    }
+}
+
+/* ================================
+   DESIGN TOKENS - INTEGRA CONSULTORES
+   Paleta: Dorado Premium sobre Azul Corporativo
+   ================================ */
+
+:root {
+    /* Colores Primarios - Dorado Premium */
+    --color-gold: #c5a67c;
+    --color-gold-light: #d6bba0;
+    --color-gold-dark: #a88d5e;
+
+    /* Colores Secundarios - Azul Corporativo */
+    --color-navy: #0f2a4a;
+    --color-navy-dark: #0f172a;
+    --color-navy-darker: #020617;
+
+    /* Neutros */
+    --color-white: #ffffff;
+    --color-slate-50: #f8fafc;
+    --color-slate-100: #f1f5f9;
+    --color-slate-200: #e2e8f0;
+    --color-slate-300: #cbd5e1;
+    --color-slate-400: #94a3b8;
+    --color-slate-500: #64748b;
+    --color-slate-600: #475569;
+    --color-slate-700: #334155;
+    --color-slate-800: #1e293b;
+    --color-slate-900: #0f172a;
+}
+
+/* Tipografía Base */
+body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    margin: 0;
+    padding: 0;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+/* Font Brand - Para títulos y elementos destacados */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+.font-brand,
+.font-serif {
+    font-family: 'Montserrat', -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+/* Scrollbar personalizada */
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--color-navy-dark);
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--color-gold);
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--color-gold-light);
+}
+
+/* Selección de texto */
+::selection {
+    background-color: var(--color-gold);
+    color: var(--color-white);
+}
+
+/* Animación de pulso suave */
+@keyframes pulse-soft {
+
+    0%,
+    100% {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: 0.5;
+    }
+}
+
+.animate-pulse-soft {
+    animation: pulse-soft 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
