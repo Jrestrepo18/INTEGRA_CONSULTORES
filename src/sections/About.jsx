@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { ShieldCheck, Target, Users, CheckCircle, Eye, Award, ChevronLeft, ChevronRight } from 'lucide-react';
+import { ShieldCheck, Target, Users, CheckCircle, Eye, Award, Sparkles, ArrowRight } from 'lucide-react';
 import { Link, useLocation } from 'react-router-dom';
 import Reveal from '../components/Reveal';
 import { aboutContent } from '../data/content';
@@ -21,29 +21,45 @@ const About = () => {
             setCurrentImage((prev) => (prev + 1) % images.length);
         }, 5000);
         return () => clearInterval(timer);
-    }, [images.length]); // Added images.length to dependency array
+    }, [images.length]);
 
     return (
-        <section id="about" className={`py - 24 ${isFullPage ? 'bg-slate-50' : 'bg-white'} `}>
-            <div className="max-w-6xl mx-auto px-6">
-                <div className="grid md:grid-cols-2 gap-16 items-center">
+        <section id="about" className={`py-32 ${isFullPage ? 'bg-[#02010a]' : 'bg-white'} overflow-hidden relative`}>
+            {/* Decoración técnica de fondo para Full Page */}
+            {isFullPage && (
+                <div className="absolute inset-0 opacity-[0.03] pointer-events-none" style={{ backgroundImage: 'radial-gradient(#c5a67c 1px, transparent 1px)', backgroundSize: '40px 40px' }}></div>
+            )}
+
+            {!isFullPage && (
+                <div className="absolute top-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-slate-200 to-transparent"></div>
+            )}
+
+            <div className="max-w-7xl mx-auto px-6 relative z-10">
+
+                {/* Breadcrumbs solo para full page */}
+                {isFullPage && (
+                    <div className="flex items-center gap-2 text-[10px] font-black uppercase tracking-[0.4em] text-slate-500 mb-12">
+                        <Link to="/" className="hover:text-[#c5a67c] transition-colors">Inicio</Link>
+                        <span>/</span>
+                        <span className="text-[#c5a67c]">Quiénes Somos</span>
+                    </div>
+                )}
+
+                <div className="grid lg:grid-cols-2 gap-24 items-center">
                     <Reveal>
                         <div className="relative group">
-                            {/* Fondo decorativo sutil */}
-                            <div className="absolute -inset-4 bg-slate-100/50 rounded-sm -z-10"></div>
+                            {/* Brillo dinámico de fondo */}
+                            <div className="absolute -inset-4 bg-gradient-to-tr from-[#c5a67c]/10 to-transparent blur-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-1000"></div>
 
-                            {/* Contenedor del Carrusel */}
-                            <div className="aspect-square bg-white border border-slate-100 rounded-sm relative overflow-hidden shadow-2xl flex items-center justify-center">
+                            {/* Contenedor del Carrusel - Estilo Galería de Arte */}
+                            <div className="aspect-[4/5] bg-[#020617] p-px relative overflow-hidden shadow-2xl">
                                 {images.map((img, idx) => (
                                     <div
                                         key={idx}
-                                        className={`absolute inset - 0 transition - all duration - 1000 flex items - center justify - center p - 12 ${idx === currentImage ? 'opacity-100 scale-100' : 'opacity-0 scale-105 pointer-events-none'} `}
+                                        className={`absolute inset-0 transition-all duration-1000 ease-in-out flex items-center justify-center ${idx === currentImage ? 'opacity-100 scale-100' : 'opacity-0 scale-110 pointer-events-none'}`}
                                     >
                                         {img.type === 'logo' ? (
-                                            <div className="relative w-full h-full flex items-center justify-center">
-                                                <div className="absolute inset-0 opacity-[0.03] pointer-events-none">
-                                                    <div className="absolute inset-0" style={{ backgroundImage: 'radial-gradient(#0f2a4a 1px, transparent 1px)', backgroundSize: '20px 20px' }}></div>
-                                                </div>
+                                            <div className="p-24 flex items-center justify-center w-full h-full bg-white">
                                                 <img
                                                     src={img.content}
                                                     alt="Integra"
@@ -52,72 +68,75 @@ const About = () => {
                                             </div>
                                         ) : (
                                             <div className="absolute inset-0">
-                                                <div className="absolute inset-0 bg-[#0f2a4a]/20 z-10"></div>
+                                                <div className="absolute inset-0 bg-[#020617]/40 z-10"></div>
                                                 <img
                                                     src={img.content}
                                                     alt="Integra Moment"
-                                                    className="w-full h-full object-cover"
+                                                    className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-1000"
                                                 />
                                             </div>
                                         )}
                                     </div>
                                 ))}
 
-                                {/* Indicadores */}
-                                <div className="absolute bottom-6 left-1/2 -translate-x-1/2 flex gap-2 z-20">
+                                {/* Barra de Progreso Minimalista */}
+                                <div className="absolute bottom-10 left-10 right-10 flex gap-3 z-20">
                                     {images.map((_, idx) => (
                                         <button
                                             key={idx}
                                             onClick={() => setCurrentImage(idx)}
-                                            className={`h - 1 rounded - full transition - all duration - 300 ${idx === currentImage ? 'w-6 bg-[#c5a67c]' : 'w-2 bg-white/50 hover:bg-white'} `}
+                                            className={`h-[1px] transition-all duration-1000 ${idx === currentImage ? 'flex-[4] bg-[#c5a67c]' : 'flex-1 bg-white/20'}`}
                                         />
                                     ))}
                                 </div>
 
-                                {/* Badge de Fundación */}
-                                <div className="absolute bottom-0 right-0 bg-[#0f2a4a] p-4 shadow-2xl z-30 translate-x-2 translate-y-2">
-                                    <div className="text-2xl font-bold text-white font-serif leading-none">2019</div>
-                                    <div className="text-[8px] text-[#c5a67c] uppercase tracking-widest font-bold">Fundación</div>
+                                {/* Badge de Prestigio */}
+                                <div className="absolute top-10 right-10 bg-[#c5a67c] px-6 py-6 shadow-2xl z-30 transform hover:-translate-y-1 transition-transform">
+                                    <div className="text-2xl font-black text-[#020617] tracking-tighter leading-none">2019</div>
+                                    <div className="text-[8px] text-[#020617] uppercase font-black tracking-[0.2em] mt-1 border-t border-[#020617]/20 pt-1">
+                                        Fundación
+                                    </div>
                                 </div>
-                            </div>
-
-                            {/* Icono de confianza */}
-                            <div className="absolute -top-6 -left-6 bg-[#c5a67c] text-[#0f2a4a] w-14 h-14 shadow-2xl flex items-center justify-center rounded-sm z-30 transform -rotate-6">
-                                <ShieldCheck size={28} />
                             </div>
                         </div>
                     </Reveal>
 
                     {/* Contenido Principal */}
                     <Reveal delay={200}>
-                        <div>
-                            <span className="text-[#c5a67c] font-bold tracking-widest uppercase text-xs mb-4 block">
-                                {aboutContent.subtitle}
-                            </span>
-                            <h2 className="text-4xl md:text-5xl font-serif text-[#0f2a4a] mb-8">
-                                {aboutContent.title}
+                        <div className="lg:pl-6">
+                            <div className="inline-flex items-center gap-3 px-3 py-1 bg-[#c5a67c]/10 rounded-full text-[#c5a67c] text-[9px] font-black uppercase tracking-[0.3em] mb-8">
+                                <ShieldCheck size={12} /> Trayectoria Institucional
+                            </div>
+
+                            <h2 className={`text-4xl md:text-7xl font-black mb-10 leading-[0.9] tracking-tighter ${isFullPage ? 'text-white' : 'text-[#0f2a4a]'}`}>
+                                {aboutContent.title.split(' ')[0]} <br />
+                                <span className="text-[#c5a67c]">{aboutContent.title.split(' ').slice(1).join(' ')}</span>
                             </h2>
 
-                            <p className="text-slate-600 text-lg leading-relaxed mb-6">
-                                <strong className="text-[#0f2a4a]">INTEGRA CONSULTORES</strong> {aboutContent.description.replace('INTEGRA CONSULTORES ', '')}
-                            </p>
+                            <div className="space-y-8">
+                                <p className={`text-lg leading-relaxed ${isFullPage ? 'text-slate-400' : 'text-slate-500'}`}>
+                                    <span className={isFullPage ? 'text-white font-bold' : 'text-[#0f2a4a] font-bold'}>INTEGRA CONSULTORES</span> {aboutContent.description.replace('INTEGRA CONSULTORES ', '')}
+                                </p>
 
-                            <p className="text-slate-600 leading-relaxed mb-6">
-                                {aboutContent.purpose}
-                            </p>
+                                <p className={`leading-relaxed font-light ${isFullPage ? 'text-slate-500' : 'text-slate-400'}`}>
+                                    {aboutContent.purpose}
+                                </p>
 
-                            <p className="text-slate-600 leading-relaxed mb-8 font-medium">
-                                {aboutContent.team}
-                            </p>
+                                <div className={`flex items-start gap-6 p-10 border-l-2 border-[#c5a67c] italic font-light relative overflow-hidden group ${isFullPage ? 'bg-white/5 text-slate-300' : 'bg-slate-50 text-slate-600'}`}>
+                                    <div className="absolute top-0 right-0 p-4 opacity-5 group-hover:opacity-10 transition-opacity">
+                                        <Award size={64} />
+                                    </div>
+                                    <span className="relative z-10 text-xl leading-relaxed">"{aboutContent.team}"</span>
+                                </div>
+                            </div>
 
                             {!isFullPage && (
-                                // Botón solo en Inicio
-                                <div className="mt-8">
+                                <div className="mt-16">
                                     <Link
                                         to="/quienes-somos"
-                                        className="inline-flex items-center gap-2 px-8 py-4 bg-[#0f2a4a] text-white text-xs font-bold uppercase tracking-widest rounded-sm hover:bg-[#c5a67c] transition-all hover:gap-4 shadow-lg shadow-[#0f2a4a]/10"
+                                        className="btn-wow inline-flex items-center gap-4 px-12 py-6 bg-[#0f2a4a] text-white text-[10px] font-black uppercase tracking-[0.3em] rounded-sm shadow-2xl"
                                     >
-                                        Conocer Nuestra Misión <CheckCircle size={14} />
+                                        Nuestra Misión <ArrowRight size={16} />
                                     </Link>
                                 </div>
                             )}
@@ -125,52 +144,50 @@ const About = () => {
                     </Reveal>
                 </div>
 
-                {/* Sección Extra solo para la página completa: Misión, Visión y Política de Calidad */}
+                {/* Secciones Full Page */}
                 {isFullPage && (
-                    <div className="mt-24 space-y-16">
-                        {/* Misión y Visión Grid */}
+                    <div className="mt-24 space-y-24">
                         <div className="grid md:grid-cols-2 gap-8">
                             <Reveal delay={300}>
-                                <div className="bg-white p-10 shadow-sm border-t-4 border-[#c5a67c] h-full flex flex-col">
-                                    <div className="w-12 h-12 bg-[#c5a67c]/10 rounded-sm flex items-center justify-center mb-6">
-                                        <Target className="text-[#c5a67c]" size={28} />
+                                <div className="group bg-white/5 p-10 md:p-12 border border-white/5 hover:border-[#c5a67c]/30 transition-all duration-700 h-full relative overflow-hidden">
+                                    <div className="absolute top-0 right-0 text-6xl font-black text-white/[0.02] p-6">01</div>
+                                    <div className="w-12 h-12 bg-[#c5a67c]/10 rounded-full flex items-center justify-center mb-8 group-hover:bg-[#c5a67c] transition-all duration-700">
+                                        <Target className="text-[#c5a67c] group-hover:text-[#020617] transition-all" size={24} />
                                     </div>
-                                    <h3 className="text-2xl font-serif text-[#0f2a4a] mb-4">Misión</h3>
-                                    <p className="text-slate-600 leading-relaxed italic">
+                                    <h3 className="text-xl font-black text-white mb-6 tracking-tight uppercase">Misión Corporativa</h3>
+                                    <p className="text-slate-400 leading-relaxed font-light italic text-lg">
                                         "{aboutContent.mission}"
                                     </p>
                                 </div>
                             </Reveal>
 
                             <Reveal delay={400}>
-                                <div className="bg-white p-10 shadow-sm border-t-4 border-[#0f2a4a] h-full flex flex-col">
-                                    <div className="w-12 h-12 bg-[#0f2a4a]/10 rounded-sm flex items-center justify-center mb-6">
-                                        <Eye className="text-[#0f2a4a]" size={28} />
+                                <div className="group bg-white/5 p-10 md:p-12 border border-white/5 hover:border-[#c5a67c]/30 transition-all duration-700 h-full relative overflow-hidden">
+                                    <div className="absolute top-0 right-0 text-6xl font-black text-white/[0.02] p-6">02</div>
+                                    <div className="w-12 h-12 bg-[#c5a67c]/10 rounded-full flex items-center justify-center mb-8 group-hover:bg-[#c5a67c] transition-all duration-700">
+                                        <Eye className="text-[#c5a67c] group-hover:text-[#020617] transition-all" size={24} />
                                     </div>
-                                    <h3 className="text-2xl font-serif text-[#0f2a4a] mb-4">Visión</h3>
-                                    <p className="text-slate-600 leading-relaxed italic">
+                                    <h3 className="text-xl font-black text-white mb-6 tracking-tight uppercase">Visión Estratégica</h3>
+                                    <p className="text-slate-400 leading-relaxed font-light italic text-lg">
                                         "{aboutContent.vision}"
                                     </p>
                                 </div>
                             </Reveal>
                         </div>
 
-                        {/* Política de Calidad */}
                         <Reveal delay={500}>
-                            <div className="bg-[#0f2a4a] p-10 md:p-16 rounded-sm relative overflow-hidden text-center">
-                                {/* Decoración */}
-                                <div className="absolute top-0 right-0 p-8 opacity-10">
-                                    <Award size={120} className="text-white" />
-                                </div>
-
+                            <div className="bg-[#020617] p-10 md:p-20 rounded-sm relative overflow-hidden text-center border border-[#c5a67c]/20 shadow-[-20px_20px_60px_rgba(0,0,0,0.5)]">
+                                <div className="absolute inset-0 opacity-[0.03] pointer-events-none" style={{ backgroundImage: 'radial-gradient(#c5a67c 1px, transparent 1px)', backgroundSize: '40px 40px' }}></div>
                                 <div className="relative z-10 max-w-4xl mx-auto">
-                                    <div className="inline-block p-3 bg-[#c5a67c]/20 rounded-full mb-6 text-[#c5a67c]">
-                                        <Award size={32} />
+                                    <div className="mb-8 inline-flex items-center gap-3 px-4 py-2 bg-[#c5a67c]/10 rounded-full">
+                                        <Award size={16} className="text-[#c5a67c]" />
+                                        <span className="text-[#c5a67c] text-[9px] font-black uppercase tracking-[0.4em]">Estándar de Excelencia</span>
                                     </div>
-                                    <h3 className="text-3xl font-serif text-white mb-6">Política de Calidad</h3>
-                                    <p className="text-slate-300 text-lg leading-relaxed italic">
+                                    <h3 className="text-3xl md:text-5xl font-black text-white mb-8 tracking-tighter leading-none">Política de Calidad</h3>
+                                    <p className="text-slate-300 text-lg md:text-2xl leading-relaxed font-light italic opacity-90 mx-auto max-w-4xl">
                                         "{aboutContent.qualityPolicy}"
                                     </p>
+                                    <div className="mt-12 w-24 h-[1px] bg-[#c5a67c]/30 mx-auto"></div>
                                 </div>
                             </div>
                         </Reveal>

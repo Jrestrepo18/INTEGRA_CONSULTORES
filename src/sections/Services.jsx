@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { CheckCircle, ShieldCheck, ArrowRight, MessageSquare, Info } from 'lucide-react';
+import { CheckCircle, ShieldCheck, ArrowRight, MessageSquare, Info, Sparkles, LayoutGrid } from 'lucide-react';
 import Reveal from '../components/Reveal';
 import { servicesContent } from '../data/content';
 
@@ -8,84 +8,78 @@ const Services = () => {
     const location = useLocation();
     const isFullPage = location.pathname === '/servicios';
 
-    // Función para obtener una imagen de placeholder profesional si no hay una real
-    const getServiceImage = (id) => {
-        const keywords = [
-            'security', 'safety', 'law', 'protection', 'investigation',
-            'recruitment', 'office', 'team', 'insurance', 'guard',
-            'medical', 'certificate', 'police', 'analytics', 'nature',
-            'money', 'billing', 'compliance', 'accounting', 'technology',
-            'installation', 'traffic', 'dashboard', 'management', 'drone'
-        ];
-        const keyword = keywords[id - 1] || 'business';
-        return `https://images.unsplash.com/photo-1507679799987-c73779587ccf?q=80&w=800&auto=format&fit=crop`; // Imagen base profesional
-    };
-
     return (
-        <section id="services" className={`py-24 ${isFullPage ? 'bg-white' : 'bg-slate-50'}`}>
-            <div className="max-w-7xl mx-auto px-6">
+        <section id="services" className={`py-32 ${isFullPage ? 'bg-[#02010a]' : 'bg-white'} overflow-hidden relative`}>
+            {/* Decoración técnica para Full Page */}
+            {isFullPage && (
+                <div className="absolute inset-0 opacity-[0.03] pointer-events-none" style={{ backgroundImage: 'radial-gradient(#c5a67c 1px, transparent 1px)', backgroundSize: '40px 40px' }}></div>
+            )}
+
+            {!isFullPage && (
+                <div className="absolute top-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-slate-200 to-transparent"></div>
+            )}
+
+            <div className="max-w-7xl mx-auto px-6 relative z-10">
 
                 {/* Breadcrumbs solo para full page */}
                 {isFullPage && (
-                    <div className="flex items-center gap-2 text-[10px] font-bold uppercase tracking-widest text-slate-400 mb-8">
+                    <div className="flex items-center gap-2 text-[10px] font-black uppercase tracking-[0.4em] text-slate-500 mb-12">
                         <Link to="/" className="hover:text-[#c5a67c] transition-colors">Inicio</Link>
                         <span>/</span>
-                        <span className="text-[#c5a67c]">Nuestros Servicios</span>
+                        <span className="text-[#c5a67c]">Portafolio Estratégico</span>
                     </div>
                 )}
 
                 <Reveal>
-                    <div className="text-center mb-20">
-                        <span className="text-[#c5a67c] font-bold tracking-widest uppercase text-xs mb-4 block">
-                            Soluciones Integrales
-                        </span>
-                        <h2 className="text-4xl md:text-5xl font-serif text-[#0f2a4a] mb-6">
-                            {servicesContent.title}
+                    <div className="text-center mb-32">
+                        <div className="inline-flex items-center gap-3 px-3 py-1 bg-[#c5a67c]/10 rounded-full text-[#c5a67c] text-[9px] font-black uppercase tracking-[0.4em] mb-8">
+                            <LayoutGrid size={12} /> Soluciones de Alto Impacto
+                        </div>
+                        <h2 className={`text-4xl md:text-8xl font-black mb-10 tracking-tighter leading-[0.9] ${isFullPage ? 'text-white' : 'text-[#0f2a4a]'}`}>
+                            Servicios <br /> <span className="text-[#c5a67c]">Estratégicos.</span>
                         </h2>
-                        <div className="w-24 h-1 bg-[#c5a67c] mx-auto mb-6"></div>
-                        <p className="text-slate-600 max-w-2xl mx-auto text-lg">
+                        <p className={`max-w-3xl mx-auto text-xl font-light leading-relaxed border-t border-[#c5a67c]/30 pt-10 mt-10 ${isFullPage ? 'text-slate-400' : 'text-slate-500'}`}>
                             {servicesContent.subtitle}
                         </p>
                     </div>
                 </Reveal>
 
-                {/* Grid de Servicios */}
-                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+                {/* Grid de Servicios - Estilo Galería de Prestigio */}
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-x-8 gap-y-12">
                     {(isFullPage ? servicesContent.services : servicesContent.services.slice(0, 8)).map((service, index) => (
                         <Reveal key={service.id} delay={index * 50}>
-                            <div className="group bg-white border border-slate-100 shadow-sm hover:shadow-xl transition-all duration-500 overflow-hidden rounded-sm flex flex-col h-full">
-                                {/* Imagen del Servicio con Filtro Corporativo */}
-                                <div className="relative h-56 overflow-hidden">
-                                    {/* Overlay Corporativo: Azul profundo que se aclara al hover */}
-                                    <div className="absolute inset-0 bg-[#0f2a4a]/40 group-hover:bg-[#0f2a4a]/10 transition-all duration-500 z-10"></div>
-
-                                    {/* Gradiente sutil para mejorar legibilidad */}
-                                    <div className="absolute inset-0 bg-gradient-to-t from-[#0f2a4a]/80 via-transparent to-transparent opacity-60 z-10"></div>
-
+                            <div className={`group transition-all duration-700 overflow-hidden flex flex-col h-full border ${isFullPage ? 'bg-white/5 border-white/5 hover:border-[#c5a67c]/30' : 'bg-white border-slate-100 hover:border-[#c5a67c]/30'} shadow-2xl`}>
+                                {/* Imagen del Servicio - Formato Editorial */}
+                                <div className="relative aspect-[4/5] overflow-hidden">
+                                    <div className="absolute inset-0 bg-[#02010a]/40 group-hover:bg-transparent transition-all duration-1000 z-10"></div>
                                     <img
-                                        src={`https://source.unsplash.com/featured/800x600?corporate,${service.title.split(' ').pop()}`}
+                                        src={service.image}
                                         alt={service.title}
-                                        className="w-full h-full object-cover grayscale group-hover:grayscale-0 group-hover:scale-110 transition-all duration-700 ease-in-out"
+                                        className="w-full h-full object-cover grayscale opacity-60 group-hover:grayscale-0 group-hover:opacity-100 group-hover:scale-110 transition-all duration-1000"
                                         onError={(e) => {
                                             e.target.src = 'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=800&auto=format&fit=crop';
                                         }}
                                     />
-
-                                    {/* Badge con Icono */}
-                                    <div className="absolute top-4 right-4 z-20">
-                                        <div className="w-10 h-10 bg-white/10 backdrop-blur-md border border-white/20 flex items-center justify-center rounded-sm shadow-xl group-hover:bg-[#c5a67c] group-hover:border-[#c5a67c] transition-all duration-500">
-                                            <ShieldCheck size={20} className="text-white group-hover:text-[#0f2a4a]" />
+                                    {/* Overlay técnico de esquina */}
+                                    <div className="absolute top-0 right-0 w-12 h-12 bg-gradient-to-bl from-[#c5a67c]/40 to-transparent"></div>
+                                    <div className="absolute bottom-6 left-6 z-20">
+                                        <div className="px-3 py-1 bg-[#c5a67c] text-[#02010a] text-[8px] font-black uppercase tracking-widest shadow-xl">
+                                            Consultoría Senior
                                         </div>
                                     </div>
                                 </div>
 
-                                <div className="p-6 flex-grow flex flex-col">
-                                    <h3 className="text-sm font-bold text-[#0f2a4a] uppercase tracking-wider mb-4 leading-tight group-hover:text-[#c5a67c] transition-colors">
+                                <div className="p-10 flex-grow flex flex-col">
+                                    <h3 className={`text-base font-black uppercase tracking-[0.2em] mb-6 leading-snug group-hover:text-[#c5a67c] transition-colors duration-500 ${isFullPage ? 'text-white' : 'text-[#0f2a4a]'}`}>
                                         {service.title}
                                     </h3>
-                                    <div className="mt-auto pt-4 border-t border-slate-50 flex justify-between items-center">
-                                        <span className="text-[10px] font-bold text-slate-400 uppercase tracking-widest">Consultoría Disponible</span>
-                                        <ArrowRight size={14} className="text-[#c5a67c] transform group-hover:translate-x-2 transition-transform" />
+                                    <div className="mt-auto flex items-center justify-between pt-8 border-t border-white/5">
+                                        <div className="flex gap-2">
+                                            {[1, 2, 3].map(i => <div key={i} className="w-1 h-1 rounded-full bg-[#c5a67c]/50"></div>)}
+                                        </div>
+                                        <div className="flex items-center gap-3 text-[10px] font-black uppercase tracking-widest text-[#c5a67c] opacity-0 group-hover:opacity-100 translate-x-4 group-hover:translate-x-0 transition-all duration-700">
+                                            Detalles <ArrowRight size={14} />
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -93,77 +87,60 @@ const Services = () => {
                     ))}
                 </div>
 
-                {/* Botón Ver Todos (solo si no estamos en la página completa) */}
+                {/* Botón Explorar Todo (solo en Inicio) */}
                 {!isFullPage && (
                     <Reveal delay={400}>
-                        <div className="mt-16 text-center">
+                        <div className="mt-32 text-center">
                             <Link
                                 to="/servicios"
-                                className="inline-flex items-center gap-3 px-10 py-5 bg-[#0f2a4a] text-white text-xs font-bold uppercase tracking-widest rounded-sm hover:bg-[#c5a67c] transition-all shadow-xl shadow-[#0f2a4a]/20"
+                                className="btn-wow inline-flex items-center gap-6 px-16 py-7 bg-[#0f2a4a] text-white text-[10px] font-black uppercase tracking-[0.4em] rounded-sm shadow-[0_30px_60px_rgba(0,0,0,0.3)]"
                             >
-                                Ver Todos los Servicios <ArrowRight size={16} />
+                                Descubrir Portafolio Completo <LayoutGrid size={18} />
                             </Link>
                         </div>
                     </Reveal>
                 )}
 
-                {/* Sección Consultoría Gratis */}
+                {/* BENEFICIO DESTACADO: CONSULTORÍA GRATIS - Versión Compacta */}
                 <Reveal delay={200}>
-                    <div className="mt-32 relative bg-[#0f2a4a] p-10 md:p-20 rounded-sm overflow-hidden text-white">
-                        {/* Decoración de fondo */}
-                        <div className="absolute top-0 right-0 w-1/3 h-full bg-gradient-to-l from-[#c5a67c]/10 to-transparent"></div>
-                        <div className="absolute -bottom-10 -left-10 w-40 h-40 bg-white/5 rounded-full blur-3xl"></div>
+                    <div className="mt-24 relative bg-[#02010a] p-8 md:p-14 rounded-sm overflow-hidden text-white border border-[#c5a67c]/20 shadow-[-20px_20px_50px_rgba(0,0,0,0.5)]">
+                        <div className="absolute inset-0 opacity-[0.03] pointer-events-none" style={{ backgroundImage: 'radial-gradient(#c5a67c 1px, transparent 1px)', backgroundSize: '40px 40px' }}></div>
 
-                        <div className="relative z-10 grid lg:grid-cols-2 gap-12 items-center">
+                        <div className="relative z-10 grid lg:grid-cols-[1.2fr_0.8fr] gap-10 items-center">
                             <div>
-                                <div className="inline-flex items-center gap-2 px-4 py-2 bg-[#c5a67c]/20 rounded-full text-[#c5a67c] text-[10px] font-bold uppercase tracking-widest mb-6">
-                                    <MessageSquare size={14} /> Beneficio Exclusivo
+                                <div className="inline-flex items-center gap-3 px-5 py-2 bg-[#c5a67c]/10 border border-[#c5a67c]/20 rounded-full text-[#c5a67c] text-[9px] font-black uppercase tracking-[0.4em] mb-6">
+                                    <Sparkles size={14} className="animate-pulse" /> Beneficio Corporativo
                                 </div>
-                                <h3 className="text-4xl md:text-5xl font-serif mb-6 leading-tight">
-                                    {servicesContent.freeConsultancy.title}
+                                <h3 className="text-3xl md:text-5xl font-black mb-6 leading-[0.9] tracking-tighter">
+                                    Diagnóstico <br /> <span className="text-[#c5a67c]">Sin Costo.</span>
                                 </h3>
-                                <p className="text-slate-300 text-lg leading-relaxed mb-8 italic">
+                                <p className="text-slate-300 text-lg leading-relaxed mb-6 font-light italic opacity-90 border-l-2 border-[#c5a67c] pl-6">
                                     "{servicesContent.freeConsultancy.description.split('. ')[0]}."
                                 </p>
-                                <p className="text-slate-400 leading-relaxed mb-10">
+                                <p className="text-slate-500 text-sm leading-relaxed mb-8 font-light max-w-xl">
                                     {servicesContent.freeConsultancy.description.split('. ').slice(1).join('. ')}
                                 </p>
                                 <Link
                                     to="/contacto"
-                                    className="inline-flex items-center gap-2 px-8 py-4 bg-[#c5a67c] text-[#0f2a4a] text-xs font-bold uppercase tracking-widest rounded-sm hover:bg-white transition-all shadow-lg"
+                                    className="btn-wow inline-flex items-center gap-4 px-10 py-5 bg-[#c5a67c] text-[#02010a] text-[10px] font-black uppercase tracking-[0.3em] rounded-sm shadow-[0_15px_30px_rgba(197,166,124,0.3)]"
                                 >
-                                    Solicitar mi Consultoría Gratis <CheckCircle size={14} />
+                                    Solicitar Auditoría <CheckCircle size={16} />
                                 </Link>
                             </div>
 
-                            <div className="hidden lg:block">
-                                <div className="grid grid-cols-2 gap-4">
-                                    <div className="space-y-4">
-                                        <div className="h-40 bg-white/5 rounded-sm flex items-center justify-center flex-col p-4 border border-white/10 hover:border-[#c5a67c]/30 transition-colors">
-                                            <div className="text-2xl font-serif text-[#c5a67c] mb-2">$0</div>
-                                            <div className="text-[9px] uppercase font-bold tracking-widest text-center">Sin costo de inversión</div>
-                                        </div>
-                                        <div className="h-40 bg-white/5 rounded-sm flex items-center justify-center flex-col p-4 border border-white/10 hover:border-[#c5a67c]/30 transition-colors">
-                                            <ShieldCheck size={32} className="text-[#c5a67c] mb-2" />
-                                            <div className="text-[9px] uppercase font-bold tracking-widest text-center">Análisis de Riesgos</div>
-                                        </div>
+                            <div className="hidden lg:grid grid-cols-2 gap-4 relative z-10 p-2">
+                                {[
+                                    { val: '$0', lab: 'Inversión', icon: Info },
+                                    { val: 'Risk', lab: 'Matriz', icon: ShieldCheck },
+                                    { val: 'Check', lab: 'Hallazgos', icon: CheckCircle },
+                                    { val: 'Map', lab: 'Hoja de Ruta', icon: ArrowRight }
+                                ].map((stat, i) => (
+                                    <div key={i} className="p-6 bg-white/5 border border-white/5 hover:border-[#c5a67c]/30 transition-all duration-700 group flex flex-col items-center text-center">
+                                        <stat.icon size={20} className="text-[#c5a67c] mb-3 group-hover:scale-110 transition-transform" />
+                                        <div className="text-xl font-black text-white mb-1 tracking-tighter uppercase">{stat.val}</div>
+                                        <div className="text-[8px] uppercase font-black tracking-[0.2em] text-slate-500 group-hover:text-slate-300 transition-colors">{stat.lab}</div>
                                     </div>
-                                    <div className="space-y-4 pt-8">
-                                        <div className="h-40 bg-white/5 rounded-sm flex items-center justify-center flex-col p-4 border border-white/10 hover:border-[#c5a67c]/30 transition-colors">
-                                            <Reveal duration={2000}>
-                                                <div className="w-12 h-12 border-2 border-[#c5a67c] rounded-full animate-ping opacity-20 absolute"></div>
-                                                <div className="w-12 h-12 bg-[#c5a67c] rounded-full flex items-center justify-center text-[#0f2a4a]">
-                                                    <Info size={24} />
-                                                </div>
-                                            </Reveal>
-                                            <div className="text-[9px] uppercase font-bold tracking-widest text-center mt-4">Puntos de Mejora</div>
-                                        </div>
-                                        <div className="h-40 bg-white/5 rounded-sm flex items-center justify-center flex-col p-4 border border-white/10 hover:border-[#c5a67c]/30 transition-colors">
-                                            <ArrowRight size={32} className="text-[#c5a67c] mb-2" />
-                                            <div className="text-[9px] uppercase font-bold tracking-widest text-center">Hoja de Ruta</div>
-                                        </div>
-                                    </div>
-                                </div>
+                                ))}
                             </div>
                         </div>
                     </div>

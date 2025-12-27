@@ -13,9 +13,11 @@ const Home = () => {
         <>
             <Hero />
             <TrustBar />
-            <ClientsCarousel />
+            <Experience />
             <About />
+            <WhatWeDo />
             <Services />
+            <ClientsCarousel />
         </>
     );
 };

@@ -1,37 +1,41 @@
 import React, { useState } from 'react';
-import { MessageCircle, X } from 'lucide-react';
+import { Sparkles } from 'lucide-react';
 import { contactInfo } from '../data/content';
 
 const WhatsAppButton = () => {
     const [isHovered, setIsHovered] = useState(false);
 
-    const whatsappUrl = `https://wa.me/${contactInfo.whatsapp}?text=${encodeURIComponent('Hola, me gustaría obtener más información sobre sus servicios.')}`;
+    const whatsappUrl = `https://wa.me/${contactInfo.whatsapp}?text=${encodeURIComponent('Hola, me gustaría obtener una consultoría estratégica sobre sus servicios.')}`;
 
     return (
-        <div className="fixed bottom-6 right-6 z-50 flex items-center gap-3">
-            {/* Tooltip */}
+        <div className="fixed bottom-8 right-8 z-50 flex flex-col items-end gap-4">
+            {/* Tooltip con estética Boutique */}
             <div
-                className={`bg-white px-4 py-2 rounded-lg shadow-lg transition-all duration-300 ${isHovered ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-4 pointer-events-none'}`}
+                className={`bg-[#020617] border border-[#c5a67c]/30 p-4 shadow-2xl transition-all duration-500 origin-bottom-right ${isHovered ? 'scale-100 opacity-100' : 'scale-50 opacity-0 pointer-events-none'}`}
             >
-                <p className="text-sm font-medium text-slate-800 whitespace-nowrap">¿Necesita ayuda?</p>
-                <p className="text-xs text-slate-500">Escríbanos por WhatsApp</p>
+                <div className="flex items-center gap-2 mb-1">
+                    <Sparkles size={12} className="text-[#c5a67c]" />
+                    <span className="text-[9px] font-black uppercase tracking-[0.3em] text-[#c5a67c]">Canal Prioritario</span>
+                </div>
+                <p className="text-[11px] text-white font-light tracking-wide">Inicie una consulta ejecutiva inmediata.</p>
             </div>
 
-            {/* Botón */}
+            {/* Botón WhatsApp de Lujo */}
             <a
                 href={whatsappUrl}
                 target="_blank"
                 rel="noopener noreferrer"
                 onMouseEnter={() => setIsHovered(true)}
                 onMouseLeave={() => setIsHovered(false)}
-                className="group relative flex items-center justify-center w-14 h-14 bg-[#25D366] rounded-full shadow-lg hover:shadow-xl hover:scale-110 transition-all duration-300"
+                className="group relative flex items-center justify-center w-16 h-16 bg-[#c5a67c] rounded-full shadow-[0_20px_50px_rgba(197,166,124,0.3)] hover:scale-110 transition-all duration-500 overflow-hidden"
             >
-                {/* Ping animation */}
-                <span className="absolute inset-0 rounded-full bg-[#25D366] animate-ping opacity-30"></span>
+                {/* Ping de atención elegante */}
+                <span className="absolute inset-0 rounded-full border-2 border-[#c5a67c] animate-ping opacity-40"></span>
+                <span className="absolute inset-0 bg-[#020617] scale-0 group-hover:scale-100 transition-transform duration-500 rounded-full"></span>
 
-                {/* WhatsApp SVG Icon */}
+                {/* WhatsApp SVG - Blanco por defecto, Dorado en hover */}
                 <svg
-                    className="w-7 h-7 text-white relative z-10"
+                    className={`w-7 h-7 relative z-10 transition-colors duration-500 ${isHovered ? 'text-[#c5a67c]' : 'text-[#020617]'}`}
                     viewBox="0 0 24 24"
                     fill="currentColor"
                 >

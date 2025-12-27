@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Menu, X } from 'lucide-react';
+import { Menu, X, ArrowRight } from 'lucide-react';
 import { NavLink, useLocation, Link } from 'react-router-dom';
 import { navLinks, contactInfo } from '../data/content';
 
@@ -9,103 +9,104 @@ const Navbar = () => {
     const location = useLocation();
 
     useEffect(() => {
-        const handleScroll = () => setIsScrolled(window.scrollY > 20);
+        const handleScroll = () => setIsScrolled(window.scrollY > 50);
         window.addEventListener('scroll', handleScroll);
         return () => window.removeEventListener('scroll', handleScroll);
     }, []);
 
-    // Cerramos el menú móvil cuando cambia la ruta
     useEffect(() => {
         setMobileMenuOpen(false);
     }, [location]);
 
-    // Determinamos si el navbar debe ser oscuro o claro basado en la página
-    // En el inicio (/) es transparente/oscuro, en las otras es blanco/claro
     const isHomePage = location.pathname === '/';
-    const navTextClass = (isScrolled || !isHomePage) ? 'text-[#0f2a4a]' : 'text-white';
 
-    // Totalmente transparente al inicio, sutil con cristal al bajar
-    const navBgClass = isScrolled
-        ? 'py-3 bg-white/10 backdrop-blur-xl border-b border-white/10 shadow-lg'
-        : 'py-5 bg-transparent';
+    // El Navbar siempre tendrá un estilo oscuro pero con variaciones de transparencia
+    const navBgClass = (isScrolled || !isHomePage)
+        ? 'py-4 bg-[#020617]/90 backdrop-blur-xl border-b border-white/5 shadow-2xl'
+        : 'py-6 bg-transparent';
 
     return (
-        <nav className={`fixed top-0 w-full z-50 transition-all duration-500 ${navBgClass}`}>
+        <nav className={`fixed top-0 w-full z-50 transition-all duration-700 ${navBgClass}`}>
             <div className="max-w-7xl mx-auto px-6 flex justify-between items-center">
 
-                <Link to="/" className="flex items-center gap-3 cursor-pointer">
-                    {/* Logo de Integra */}
+                <Link to="/" className="flex items-center gap-3 cursor-pointer group">
                     <img
                         src="/assets/brand/logo.png"
                         alt="Integra Consultores"
-                        className={`w-auto object-contain transition-all duration-300 ${isScrolled || !isHomePage ? 'h-12' : 'h-14'}`}
+                        className={`w-auto object-contain transition-all duration-500 group-hover:scale-105 ${isScrolled || !isHomePage ? 'h-10' : 'h-12'}`}
                     />
                 </Link>
 
-                {/* Desktop Menu */}
-                <div className={`hidden lg:flex items-center gap-8 text-[11px] font-bold uppercase tracking-widest transition-colors ${navTextClass}`}>
+                {/* Desktop Menu - Estilo Ejecutivo */}
+                <div className="hidden lg:flex items-center gap-12 text-[10px] font-black uppercase tracking-[0.4em] text-white">
                     {navLinks.map((link) => (
                         <NavLink
                             key={link.path}
                             to={link.path}
                             className={({ isActive }) =>
-                                `hover:text-[#c5a67c] transition-colors relative group py-2 ${isActive ? 'text-[#c5a67c]' : ''}`
+                                `relative group py-2 transition-all duration-500 ${isActive ? 'text-[#c5a67c]' : 'text-slate-300 hover:text-white'}`
                             }
                         >
                             {link.label}
-                            <span className={`absolute -bottom-1 left-0 h-0.5 bg-[#c5a67c] transition-all duration-300 ${location.pathname === link.path ? 'w-full' : 'w-0 group-hover:w-full'}`}></span>
+                            <span className={`absolute -bottom-1 left-0 h-[1px] bg-[#c5a67c] transition-all duration-500 ${location.pathname === link.path ? 'w-full' : 'w-0 group-hover:w-full'}`}></span>
                         </NavLink>
                     ))}
                 </div>
 
                 <div className="hidden lg:block">
                     <a
-                        href={`https://wa.me/${contactInfo.whatsapp}?text=${encodeURIComponent('Hola, me gustaría agendar una cita para conocer más sobre sus servicios.')}`}
+                        href={`https://wa.me/${contactInfo.whatsapp}`}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className={`px-6 py-3 rounded-sm text-xs font-bold uppercase tracking-widest transition-all border flex items-center gap-2 ${isScrolled || !isHomePage ? 'border-[#0f2a4a] text-[#0f2a4a] hover:bg-[#0f2a4a] hover:text-white' : 'border-white/30 text-white hover:bg-white hover:text-[#0f2a4a]'}`}
+                        className="btn-wow relative overflow-hidden px-8 py-3.5 bg-[#c5a67c] text-[#020617] text-[10px] font-black uppercase tracking-[0.2em] rounded-sm flex items-center gap-3 shadow-[0_10px_20px_rgba(197,166,124,0.15)] group"
                     >
-                        <svg className="w-4 h-4 fill-current" viewBox="0 0 24 24">
-                            <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" />
-                        </svg>
-                        Agendar Cita
+                        <span>Acceso Ejecutivo</span>
+                        <ArrowRight size={14} className="group-hover:translate-x-1 transition-transform" />
                     </a>
                 </div>
 
                 {/* Mobile Menu Button */}
                 <button
-                    className={`lg:hidden p-2 ${isScrolled || !isHomePage ? 'text-[#0f2a4a]' : 'text-white'}`}
+                    className="lg:hidden p-2 text-white"
                     onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
                 >
                     {mobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
                 </button>
             </div>
 
-            {/* Mobile Menu */}
-            <div className={`lg:hidden absolute top-full left-0 w-full bg-white shadow-2xl transition-all duration-300 overflow-hidden ${mobileMenuOpen ? 'max-h-[500px] opacity-100' : 'max-h-0 opacity-0'}`}>
-                <div className="p-6 flex flex-col gap-1">
+            {/* Mobile Menu - Pantalla Completa Dark */}
+            <div className={`lg:hidden fixed inset-0 top-0 bg-[#020617] z-[100] transition-all duration-700 flex flex-col p-8 ${mobileMenuOpen ? 'translate-x-0 opacity-100' : 'translate-x-full opacity-0'}`}>
+                <div className="flex justify-between items-center mb-16">
+                    <img src="/assets/brand/logo.png" alt="Integra" className="h-10 w-auto" />
+                    <button onClick={() => setMobileMenuOpen(false)} className="text-white">
+                        <X size={32} />
+                    </button>
+                </div>
+
+                <div className="flex flex-col gap-8">
                     {navLinks.map((link) => (
                         <NavLink
                             key={link.path}
                             to={link.path}
                             className={({ isActive }) =>
-                                `text-left text-sm font-bold uppercase tracking-widest py-4 border-b border-slate-100 transition-colors ${isActive ? 'text-[#c5a67c]' : 'text-slate-700 hover:text-[#c5a67c]'}`
+                                `text-2xl font-black uppercase tracking-[0.2em] transition-all ${isActive ? 'text-[#c5a67c]' : 'text-slate-500'}`
                             }
                         >
                             {link.label}
                         </NavLink>
                     ))}
+                </div>
+
+                <div className="mt-auto pb-12">
                     <a
-                        href={`https://wa.me/${contactInfo.whatsapp}?text=${encodeURIComponent('Hola, me gustaría agendar una cita para conocer más sobre sus servicios.')}`}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="mt-4 w-full py-4 bg-[#25D366] text-white flex items-center justify-center gap-2 font-bold uppercase tracking-widest text-sm rounded-sm hover:bg-[#128C7E] transition-colors shadow-lg"
+                        href={`https://wa.me/${contactInfo.whatsapp}`}
+                        className="w-full py-6 bg-[#c5a67c] text-[#020617] flex items-center justify-center gap-3 font-black uppercase tracking-[0.3em] text-xs rounded-sm shadow-2xl"
                     >
-                        <svg className="w-5 h-5 fill-current" viewBox="0 0 24 24">
-                            <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" />
-                        </svg>
-                        Agendar Cita
+                        Contactar Ahora <ArrowRight size={18} />
                     </a>
+                    <div className="mt-10 text-center text-slate-600 text-[10px] uppercase font-bold tracking-widest">
+                        &copy; 2024 INTEGRA CONSULTORES
+                    </div>
                 </div>
             </div>
         </nav>

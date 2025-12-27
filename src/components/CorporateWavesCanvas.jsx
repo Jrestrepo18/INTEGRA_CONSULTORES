@@ -1,7 +1,5 @@
 import React, { useEffect, useRef } from 'react';
 
-// --- COMPONENTE CANVAS: ONDAS INSTITUCIONALES (SILK WAVES) ---
-// Representa: Calma, Solidez, Continuidad y Elegancia.
 const CorporateWavesCanvas = () => {
     const canvasRef = useRef(null);
 
@@ -10,13 +8,6 @@ const CorporateWavesCanvas = () => {
         const ctx = canvas.getContext('2d');
         let width, height;
         let animationFrameId;
-
-        const config = {
-            lineCount: 3, // Pocas líneas para elegancia minimalista
-            amplitude: 50, // Altura de la onda suave
-            frequency: 0.002, // Frecuencia muy baja para ondas largas
-            speed: 0.0005 // Movimiento extremadamente lento (serio)
-        };
 
         const resize = () => {
             width = window.innerWidth;
@@ -28,44 +19,50 @@ const CorporateWavesCanvas = () => {
         const animate = (time) => {
             ctx.clearRect(0, 0, width, height);
 
-            // Fondo: Azul Corporativo Profundo (Casi Negro/Navy)
-            // Un degradado vertical sutil que da profundidad de "oficina ejecutiva"
-            const bgGradient = ctx.createLinearGradient(0, 0, 0, height);
-            bgGradient.addColorStop(0, '#0f172a'); // Slate 900
-            bgGradient.addColorStop(1, '#1e293b'); // Slate 800
-            ctx.fillStyle = bgGradient;
+            // Fondo: Azul Corporativo Sólido y Profundo
+            const bg = ctx.createLinearGradient(0, 0, width, height);
+            bg.addColorStop(0, '#0f172a'); // Navy Slate
+            bg.addColorStop(1, '#020617'); // Darker Navy
+            ctx.fillStyle = bg;
             ctx.fillRect(0, 0, width, height);
 
-            // Dibujar Ondas
-            ctx.lineWidth = 2;
-
-            for (let i = 0; i < config.lineCount; i++) {
-                ctx.beginPath();
-
-                // Color: Dorado/Bronce muy sutil y transparente
-                // Esto da el toque "Premium" sobre el azul
-                ctx.strokeStyle = `rgba(203, 172, 136, ${0.1 + (i * 0.05)})`;
-
-                for (let x = 0; x <= width; x += 10) {
-                    // Fórmula de onda sine compuesta
-                    const y = height / 2
-                        + Math.sin(x * config.frequency + time * config.speed + i) * config.amplitude
-                        + Math.sin(x * config.frequency * 0.5 + time * config.speed * 0.5) * config.amplitude * 0.5;
-
-                    if (x === 0) ctx.moveTo(x, y + (i * 40)); // Offset vertical por línea
-                    else ctx.lineTo(x, y + (i * 40));
-                }
-                ctx.stroke();
+            // Dibujar un patrón de rejilla técnica muy sutil (Consultoría/Estrategia)
+            ctx.beginPath();
+            ctx.strokeStyle = 'rgba(197, 166, 124, 0.02)';
+            ctx.lineWidth = 1;
+            const step = 80;
+            for (let x = 0; x < width; x += step) {
+                ctx.moveTo(x, 0);
+                ctx.lineTo(x, height);
             }
-
-            // Añadir un efecto de "ruido" o grano muy sutil para textura de papel/pared
-            // Esto elimina la sensación "digital"
-            ctx.fillStyle = "rgba(255,255,255,0.03)";
-            for (let k = 0; k < 100; k++) {
-                const px = Math.random() * width;
-                const py = Math.random() * height;
-                ctx.fillRect(px, py, 1, 1);
+            for (let y = 0; y < height; y += step) {
+                ctx.moveTo(0, y);
+                ctx.lineTo(width, y);
             }
+            ctx.stroke();
+
+            // Dos grandes orbes de luz muy suaves que se mueven lento para dar profundidad
+            const t = time * 0.0001;
+
+            // Orbe Dorado
+            const g1 = ctx.createRadialGradient(
+                width * (0.7 + Math.sin(t) * 0.1), height * (0.3 + Math.cos(t) * 0.1), 0,
+                width * (0.7 + Math.sin(t) * 0.1), height * (0.3 + Math.cos(t) * 0.1), width * 0.6
+            );
+            g1.addColorStop(0, 'rgba(197, 166, 124, 0.07)');
+            g1.addColorStop(1, 'rgba(197, 166, 124, 0)');
+            ctx.fillStyle = g1;
+            ctx.fillRect(0, 0, width, height);
+
+            // Orbe Azul
+            const g2 = ctx.createRadialGradient(
+                width * (0.2 + Math.cos(t * 0.8) * 0.1), height * (0.7 + Math.sin(t * 0.8) * 0.1), 0,
+                width * (0.2 + Math.cos(t * 0.8) * 0.1), height * (0.7 + Math.sin(t * 0.8) * 0.1), width * 0.5
+            );
+            g2.addColorStop(0, 'rgba(15, 42, 74, 0.2)');
+            g2.addColorStop(1, 'rgba(15, 42, 74, 0)');
+            ctx.fillStyle = g2;
+            ctx.fillRect(0, 0, width, height);
 
             animationFrameId = requestAnimationFrame((t) => animate(t));
         };

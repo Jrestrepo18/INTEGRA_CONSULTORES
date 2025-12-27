@@ -39,7 +39,7 @@ function App() {
             {isLoading && <LoadingScreen onFinished={() => setIsLoading(false)} />}
             <Router>
                 <ScrollToTop />
-                <div className={`font-sans text-slate-800 bg-white min-h-screen selection:bg-[#c5a67c] selection:text-white flex flex-col transition-opacity duration-700 ${isLoading ? 'opacity-0' : 'opacity-100'}`}>
+                <div className={`font-sans text-slate-300 bg-[#020617] min-h-screen selection:bg-[#c5a67c] selection:text-white flex flex-col transition-opacity duration-1000 ${isLoading ? 'opacity-0' : 'opacity-100'}`}>
                     <Navbar />
                     <main className="flex-grow">
                         <Routes>
