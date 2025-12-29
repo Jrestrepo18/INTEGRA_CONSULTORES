@@ -42,13 +42,13 @@ const Contact = () => {
                     <Reveal>
                         <div className="space-y-12">
                             <div>
-                                <div className="inline-flex items-center gap-3 px-4 py-2 bg-[#c5a67c]/10 border border-[#c5a67c]/20 rounded-full text-[#c5a67c] text-[10px] font-black uppercase tracking-[0.3em] mb-8">
-                                    <Sparkles size={14} /> Canales Exclusivos
+                                <div className="inline-flex items-center gap-3 px-3 py-1 bg-[#c5a67c]/10 border border-[#c5a67c]/20 rounded-full text-[#c5a67c] text-[9px] font-black uppercase tracking-[0.3em] mb-8">
+                                    <Sparkles size={12} /> Canales Exclusivos
                                 </div>
-                                <h2 className="text-4xl md:text-6xl font-bold text-white mb-8 tracking-tighter leading-tight">
+                                <h2 className="text-3xl md:text-5xl lg:text-6xl font-bold text-white mb-10 tracking-tighter leading-none">
                                     Inicie una Conversación <br /> <span className="text-[#c5a67c]">Estratégica.</span>
                                 </h2>
-                                <p className="text-slate-400 text-lg font-light leading-relaxed max-w-lg">
+                                <p className="text-slate-400 text-lg sm:text-xl font-light leading-relaxed max-w-lg border-l-2 border-[#c5a67c]/30 pl-6">
                                     Estamos listos para analizar los desafíos de su organización con la confidencialidad y rigor técnico que nos caracteriza.
                                 </p>
                             </div>

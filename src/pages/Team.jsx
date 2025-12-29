@@ -30,13 +30,14 @@ const Team = () => {
 
                 <Reveal>
                     <div className="mb-24">
-                        <span className="text-[#c5a67c] font-bold tracking-[0.4em] uppercase text-[10px] mb-4 block">
-                            {teamContent.subtitle}
-                        </span>
-                        <h2 className="text-4xl md:text-6xl font-bold text-white mb-10 tracking-tight">
+                        <div className="inline-flex items-center gap-3 px-3 py-1 bg-[#c5a67c]/10 border border-[#c5a67c]/20 rounded-full mb-8">
+                            <Users size={12} className="text-[#c5a67c]" />
+                            <span className="text-[#c5a67c] text-[9px] font-black uppercase tracking-[0.3em]">{teamContent.subtitle}</span>
+                        </div>
+                        <h2 className="text-3xl md:text-5xl lg:text-6xl font-black text-white mb-10 tracking-tighter leading-none">
                             {teamContent.headerText}
                         </h2>
-                        <p className="text-slate-400 text-lg md:text-xl max-w-4xl font-light leading-relaxed">
+                        <p className="text-slate-400 text-lg md:text-xl max-w-4xl font-light leading-relaxed border-l-2 border-[#c5a67c]/30 pl-6">
                             {teamContent.description}
                         </p>
                     </div>

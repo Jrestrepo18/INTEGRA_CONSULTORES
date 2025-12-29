@@ -16,13 +16,13 @@ const WhatWeDo = () => {
                 {/* Header */}
                 <Reveal>
                     <div className="text-center mb-24">
-                        <div className="inline-flex items-center gap-2 px-3 py-1 bg-[#c5a67c]/10 rounded-full text-[#c5a67c] text-[9px] font-black uppercase tracking-[0.3em] mb-6">
+                        <div className="inline-flex items-center gap-3 px-3 py-1 bg-[#c5a67c]/10 border border-[#c5a67c]/20 rounded-full text-[#c5a67c] text-[9px] font-black uppercase tracking-[0.3em] mb-8">
                             <Sparkles size={12} /> Excelencia Operativa
                         </div>
-                        <h2 className="text-4xl md:text-6xl font-black text-[#0f2a4a] mb-8 tracking-tight">
+                        <h2 className="text-3xl md:text-5xl lg:text-6xl font-black text-[#0f2a4a] mb-10 tracking-tighter leading-none">
                             {whatWeDoContent.title}
                         </h2>
-                        <p className="text-slate-500 text-lg font-light leading-relaxed max-w-2xl mx-auto italic">
+                        <p className="text-slate-500 text-lg md:text-xl font-light leading-relaxed max-w-2xl mx-auto italic border-t border-[#c5a67c]/30 pt-10">
                             {whatWeDoContent.subtitle}
                         </p>
                     </div>

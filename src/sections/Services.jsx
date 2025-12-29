@@ -35,7 +35,7 @@ const Services = () => {
                         <div className="inline-flex items-center gap-3 px-3 py-1 bg-[#c5a67c]/10 rounded-full text-[#c5a67c] text-[9px] font-black uppercase tracking-[0.4em] mb-8">
                             <LayoutGrid size={12} /> Soluciones de Alto Impacto
                         </div>
-                        <h2 className={`text-4xl md:text-8xl font-black mb-10 tracking-tighter leading-[0.9] ${isFullPage ? 'text-white' : 'text-[#0f2a4a]'}`}>
+                        <h2 className={`text-3xl md:text-5xl lg:text-6xl font-black mb-10 tracking-tighter leading-[0.9] ${isFullPage ? 'text-white' : 'text-[#0f2a4a]'}`}>
                             Servicios <br /> <span className="text-[#c5a67c]">Estratégicos.</span>
                         </h2>
                         <p className={`max-w-3xl mx-auto text-xl font-light leading-relaxed border-t border-[#c5a67c]/30 pt-10 mt-10 ${isFullPage ? 'text-slate-400' : 'text-slate-500'}`}>

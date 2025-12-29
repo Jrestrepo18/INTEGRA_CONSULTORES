@@ -59,7 +59,7 @@ const About = () => {
                                         className={`absolute inset-0 transition-all duration-1000 ease-in-out flex items-center justify-center ${idx === currentImage ? 'opacity-100 scale-100' : 'opacity-0 scale-110 pointer-events-none'}`}
                                     >
                                         {img.type === 'logo' ? (
-                                            <div className="p-24 flex items-center justify-center w-full h-full bg-white">
+                                            <div className="p-24 flex items-center justify-center w-full h-full bg-[#020617]">
                                                 <img
                                                     src={img.content}
                                                     alt="Integra"
@@ -104,11 +104,11 @@ const About = () => {
                     {/* Contenido Principal */}
                     <Reveal delay={200}>
                         <div className="lg:pl-6">
-                            <div className="inline-flex items-center gap-3 px-3 py-1 bg-[#c5a67c]/10 rounded-full text-[#c5a67c] text-[9px] font-black uppercase tracking-[0.3em] mb-8">
+                            <div className="inline-flex items-center gap-3 px-3 py-1 bg-[#c5a67c]/10 border border-[#c5a67c]/20 rounded-full text-[#c5a67c] text-[9px] font-black uppercase tracking-[0.3em] mb-8">
                                 <ShieldCheck size={12} /> Trayectoria Institucional
                             </div>
 
-                            <h2 className={`text-4xl md:text-7xl font-black mb-10 leading-[0.9] tracking-tighter ${isFullPage ? 'text-white' : 'text-[#0f2a4a]'}`}>
+                            <h2 className={`text-3xl md:text-5xl lg:text-6xl font-black mb-10 leading-none tracking-tighter ${isFullPage ? 'text-white' : 'text-[#0f2a4a]'}`}>
                                 {aboutContent.title.split(' ')[0]} <br />
                                 <span className="text-[#c5a67c]">{aboutContent.title.split(' ').slice(1).join(' ')}</span>
                             </h2>
@@ -183,7 +183,7 @@ const About = () => {
                                         <Award size={16} className="text-[#c5a67c]" />
                                         <span className="text-[#c5a67c] text-[9px] font-black uppercase tracking-[0.4em]">Estándar de Excelencia</span>
                                     </div>
-                                    <h3 className="text-3xl md:text-5xl font-black text-white mb-8 tracking-tighter leading-none">Política de Calidad</h3>
+                                    <h3 className="text-3xl md:text-4xl lg:text-5xl font-black text-white mb-8 tracking-tighter leading-none">Política de Calidad</h3>
                                     <p className="text-slate-300 text-lg md:text-2xl leading-relaxed font-light italic opacity-90 mx-auto max-w-4xl">
                                         "{aboutContent.qualityPolicy}"
                                     </p>

@@ -16,7 +16,7 @@ const LoadingScreen = ({ onFinished }) => {
     }, [onFinished]);
 
     return (
-        <div className={`fixed inset-0 z-[9999] flex items-center justify-center bg-[#02010a] transition-all duration-1000 ease-in-out ${isExiting ? 'opacity-0 blur-2xl pointer-events-none' : 'opacity-100 blur-0'}`}>
+        <div className={`fixed inset-0 z-[9999] flex items-center justify-center bg-[#020617] transition-all duration-1000 ease-in-out ${isExiting ? 'opacity-0 blur-2xl pointer-events-none' : 'opacity-100 blur-0'}`}>
             {/* Efecto de luz técnica de fondo */}
             <div className="absolute inset-0 opacity-[0.03] pointer-events-none" style={{ backgroundImage: 'radial-gradient(#c5a67c 1px, transparent 1px)', backgroundSize: '40px 40px' }}></div>
 

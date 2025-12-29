@@ -1,7 +1,68 @@
-import React from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { Award, Calendar, CheckCircle, TrendingUp, AlertTriangle } from 'lucide-react';
 import Reveal from '../components/Reveal';
 import { experienceContent } from '../data/content';
+
+const Counter = ({ value }) => {
+    const [displayValue, setDisplayValue] = useState(0);
+    const [hasAnimated, setHasAnimated] = useState(false);
+    const elementRef = useRef(null);
+
+    // Separar número del texto (ej: "100%" -> 100 y "%")
+    const match = value.toString().match(/^(\d+)(.*)$/);
+
+    useEffect(() => {
+        if (!match) return;
+
+        const observer = new IntersectionObserver(
+            (entries) => {
+                // Dispara si hay intersección (aunque sea mínima)
+                if (entries[0].isIntersecting && !hasAnimated) {
+                    setHasAnimated(true);
+
+                    const target = parseInt(match[1]);
+                    // Se adapta: rápido para números pequeños, normal para grandes
+                    const duration = target < 20 ? 1000 : 2000;
+                    const startTime = performance.now();
+
+                    const animate = (currentTime) => {
+                        const elapsed = currentTime - startTime;
+                        const progress = Math.min(elapsed / duration, 1);
+
+                        // Easing suave cubic
+                        const ease = 1 - Math.pow(1 - progress, 3);
+
+                        const current = Math.floor(ease * target);
+                        setDisplayValue(current);
+
+                        if (progress < 1) {
+                            requestAnimationFrame(animate);
+                        } else {
+                            setDisplayValue(target);
+                        }
+                    };
+
+                    requestAnimationFrame(animate);
+                }
+            },
+            { threshold: 0.1 } // Se activa apenas entre el 10% en pantalla
+        );
+
+        if (elementRef.current) {
+            observer.observe(elementRef.current);
+        }
+
+        return () => observer.disconnect();
+    }, [match, hasAnimated]);
+
+    if (!match) return <span>{value}</span>;
+
+    return (
+        <span ref={elementRef} className="tabular-nums inline-block">
+            {displayValue}{match[2]}
+        </span>
+    );
+};
 
 const Experience = () => {
     const statIcons = [Calendar, Award, CheckCircle, TrendingUp];
@@ -15,14 +76,15 @@ const Experience = () => {
             <div className="max-w-6xl mx-auto px-6 relative z-10">
                 {/* Header */}
                 <Reveal>
-                    <div className="text-center mb-16">
-                        <span className="text-[#c5a67c] font-bold tracking-[0.3em] uppercase text-[10px] mb-4 block">
-                            {experienceContent.subtitle}
-                        </span>
-                        <h2 className="text-3xl md:text-5xl font-bold text-white mb-8">
+                    <div className="text-center mb-20">
+                        <div className="inline-flex items-center gap-3 px-3 py-1 bg-[#c5a67c]/10 border border-[#c5a67c]/20 rounded-full mb-8">
+                            <TrendingUp size={12} className="text-[#c5a67c]" />
+                            <span className="text-[#c5a67c] text-[9px] font-black uppercase tracking-[0.3em]">{experienceContent.subtitle}</span>
+                        </div>
+                        <h2 className="text-3xl md:text-5xl lg:text-6xl font-black text-white mb-10 tracking-tighter leading-none">
                             {experienceContent.title}
                         </h2>
-                        <p className="text-slate-400 text-lg font-light leading-relaxed max-w-3xl mx-auto">
+                        <p className="text-slate-400 text-lg md:text-xl font-light leading-relaxed max-w-3xl mx-auto border-t border-[#c5a67c]/30 pt-10">
                             {experienceContent.description}
                         </p>
                     </div>
@@ -30,7 +92,7 @@ const Experience = () => {
 
                 {/* Stats Grid - Estilo Ejecutivo */}
                 <Reveal delay={200}>
-                    <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-16">
+                    <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 mb-16">
                         {experienceContent.stats.map((stat, index) => {
                             const Icon = statIcons[index] || Award;
                             return (
@@ -38,10 +100,10 @@ const Experience = () => {
                                     key={index}
                                     className="bg-white/5 border border-white/10 p-8 rounded-sm text-center group hover:bg-white/10 hover:border-[#c5a67c]/30 transition-all duration-500"
                                 >
-                                    <div className="text-3xl lg:text-4xl font-bold text-[#c5a67c] mb-2">
-                                        {stat.value}
+                                    <div className="text-3xl lg:text-5xl font-bold text-[#c5a67c] mb-4 tracking-tighter">
+                                        <Counter value={stat.value} />
                                     </div>
-                                    <div className="text-[10px] text-slate-400 uppercase tracking-[0.2em] font-medium">
+                                    <div className="text-[9px] text-slate-400 uppercase tracking-[0.25em] font-medium border-t border-white/10 pt-4 inline-block">
                                         {stat.label}
                                     </div>
                                 </div>

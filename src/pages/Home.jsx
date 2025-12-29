@@ -12,7 +12,7 @@ const Home = () => {
     return (
         <>
             <Hero />
-            <TrustBar />
+            {/* TrustBar removed to avoid duplication with Experience section */}
             <Experience />
             <About />
             <WhatWeDo />

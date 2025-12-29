@@ -35,7 +35,7 @@ const Clients = () => {
                             <Building2 size={12} className="text-[#c5a67c]" />
                             <span className="text-[#c5a67c] text-[9px] font-black uppercase tracking-[0.3em]">Nuestra Cartera de Confianza</span>
                         </div>
-                        <h2 className="text-4xl md:text-8xl font-bold text-white mb-10 tracking-tighter leading-none">
+                        <h2 className="text-3xl md:text-5xl lg:text-6xl font-bold text-white mb-10 tracking-tighter leading-none">
                             Alianzas que <br /> <span className="text-[#c5a67c]">Perduran.</span>
                         </h2>
                         <p className="text-slate-400 text-lg md:text-xl max-w-4xl font-light leading-relaxed border-l-2 border-[#c5a67c]/30 pl-8 ml-2 mt-12">
@@ -45,16 +45,16 @@ const Clients = () => {
                 </Reveal>
 
                 {/* Grid de Logos - Color Real con Fondo Blanco para visibilidad */}
-                <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-4 mb-40">
+                <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4 mb-40">
                     {clientsContent.clients.map((client, index) => (
                         <Reveal key={index} delay={index * 50}>
-                            <div className="group h-48 bg-white flex flex-col items-center justify-center p-8 transition-all duration-700 relative overflow-hidden border border-white/5 hover:border-[#c5a67c]/30">
+                            <div className="group h-48 bg-white/5 backdrop-blur-sm flex flex-col items-center justify-center p-8 transition-all duration-700 relative overflow-hidden border border-white/5 hover:border-[#c5a67c]/50 hover:bg-white/10 hover:shadow-[0_0_30px_rgba(197,166,124,0.1)] rounded-sm">
                                 <img
                                     src={client.logo}
                                     alt={client.name}
                                     width="300"
                                     height="150"
-                                    className="max-w-full max-h-full object-contain transition-all duration-700 group-hover:scale-110"
+                                    className="max-w-full max-h-full object-contain transition-all duration-700 opacity-80 group-hover:scale-110 group-hover:opacity-100"
                                     onError={(e) => {
                                         e.target.style.display = 'none';
                                     }}
