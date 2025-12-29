@@ -69,6 +69,7 @@ const Navbar = () => {
                 <button
                     className="lg:hidden p-2 text-white"
                     onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+                    aria-label="Abrir menú"
                 >
                     {mobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
                 </button>
@@ -78,7 +79,7 @@ const Navbar = () => {
             <div className={`lg:hidden fixed inset-0 top-0 bg-[#020617] z-[100] transition-all duration-700 flex flex-col p-8 ${mobileMenuOpen ? 'translate-x-0 opacity-100' : 'translate-x-full opacity-0'}`}>
                 <div className="flex justify-between items-center mb-16">
                     <img src="/assets/brand/logo.png" alt="Integra" className="h-10 w-auto" />
-                    <button onClick={() => setMobileMenuOpen(false)} className="text-white">
+                    <button onClick={() => setMobileMenuOpen(false)} className="text-white" aria-label="Cerrar menú">
                         <X size={32} />
                     </button>
                 </div>

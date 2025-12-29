@@ -52,6 +52,8 @@ const Clients = () => {
                                 <img
                                     src={client.logo}
                                     alt={client.name}
+                                    width="300"
+                                    height="150"
                                     className="max-w-full max-h-full object-contain transition-all duration-700 group-hover:scale-110"
                                     onError={(e) => {
                                         e.target.style.display = 'none';
@@ -137,6 +139,9 @@ const Clients = () => {
                                     <img
                                         src="https://images.unsplash.com/photo-1600880292203-757bb62b4baf?q=80&w=1000&auto=format&fit=crop"
                                         alt="Aliados Estratégicos"
+                                        loading="lazy"
+                                        width="1000"
+                                        height="1250"
                                         className="w-full h-full object-cover grayscale saturate-0 group-hover:scale-105 transition-all duration-1000"
                                         onError={(e) => {
                                             e.target.style.display = 'none';

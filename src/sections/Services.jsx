@@ -55,6 +55,9 @@ const Services = () => {
                                     <img
                                         src={service.image}
                                         alt={service.title}
+                                        loading="lazy"
+                                        width="800"
+                                        height="1000"
                                         className="w-full h-full object-cover grayscale opacity-60 group-hover:grayscale-0 group-hover:opacity-100 group-hover:scale-110 transition-all duration-1000"
                                         onError={(e) => {
                                             e.target.src = 'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=800&auto=format&fit=crop';
