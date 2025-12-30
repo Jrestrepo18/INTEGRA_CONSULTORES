@@ -7,6 +7,7 @@ import { LanguageProvider } from './context/LanguageContext';
 import Navbar from './components/Navbar';
 import WhatsAppButton from './components/WhatsAppButton';
 import LoadingScreen from './components/LoadingScreen';
+import CookieBanner from './components/CookieBanner';
 
 // Secciones / Páginas
 // Secciones / Páginas (Lazy Loading)
@@ -121,6 +122,7 @@ function App() {
             </main>
             <Footer />
             <WhatsAppButton />
+            <CookieBanner />
           </div>
         </Router>
       </HelmetProvider>

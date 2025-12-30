@@ -4,6 +4,7 @@ import { NavLink, useLocation, Link } from 'react-router-dom';
 import { contactInfo } from '../data/content';
 import { useLanguage } from '../context/LanguageContext';
 import LanguageSelector from './LanguageSelector';
+import { logEvent } from '../utils/analytics';
 
 const Navbar = () => {
     const [isScrolled, setIsScrolled] = useState(false);
@@ -96,6 +97,7 @@ const Navbar = () => {
                             href={`https://wa.me/${contactInfo.whatsapp}`}
                             target="_blank"
                             rel="noopener noreferrer"
+                            onClick={() => logEvent('Conversion', 'Click WhatsApp Header', 'Navbar')}
                             className={`btn-wow relative overflow-hidden bg-[#c5a67c] text-[#020617] text-[9px] font-black uppercase tracking-[0.2em] rounded-full flex items-center gap-3 shadow-[0_10px_20px_rgba(197,166,124,0.15)] group transition-all duration-500 ${isFloating ? 'px-6 py-2.5' : 'px-8 py-3.5'}`}
                         >
                             <span>{t('nav.contactUs')}</span>
@@ -161,6 +163,7 @@ const Navbar = () => {
                         </div>
                         <a
                             href={`https://wa.me/${contactInfo.whatsapp}`}
+                            onClick={() => logEvent('Conversion', 'Click WhatsApp Mobile', 'Mobile Menu')}
                             className="w-full py-4 bg-[#c5a67c] text-[#020617] flex items-center justify-center gap-3 font-bold uppercase tracking-[0.2em] text-xs rounded-lg shadow-lg shadow-[#c5a67c]/20 hover:shadow-[#c5a67c]/40 hover:scale-[1.02] transition-all duration-300"
                         >
                             {t('nav.contactNow')} <ArrowRight size={16} />
