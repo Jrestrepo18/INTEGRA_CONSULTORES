@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Globe2, Phone, Mail, Clock, MessageSquare, Send, Sparkles, MapPin } from 'lucide-react';
 import { contactInfo } from '../data/content';
-import Reveal from '../components/Reveal';
+import Reveal from '../components/ui/Reveal';
 import { useLanguage } from '../context/LanguageContext';
 
 const Contact = () => {

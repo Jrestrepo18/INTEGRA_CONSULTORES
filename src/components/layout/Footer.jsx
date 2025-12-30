@@ -1,8 +1,8 @@
 import React from 'react';
 import { Mail, Phone, MapPin, Instagram, Facebook, Linkedin, ArrowUpRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
-import { contactInfo, siteInfo } from '../data/content';
-import { useLanguage } from '../context/LanguageContext';
+import { contactInfo, siteInfo } from '../../data/content';
+import { useLanguage } from '../../context/LanguageContext';
 
 const Footer = () => {
     const { t } = useLanguage();

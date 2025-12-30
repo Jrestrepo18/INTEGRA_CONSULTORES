@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { CheckCircle, ShieldCheck, ArrowRight, MessageSquare, Info, Sparkles, LayoutGrid } from 'lucide-react';
-import Reveal from '../components/Reveal';
-import ServiceModal from '../components/ServiceModal';
+import Reveal from '../components/ui/Reveal';
+import ServiceModal from '../components/modals/ServiceModal';
 import { servicesContent } from '../data/content';
 import { useLanguage } from '../context/LanguageContext';
 

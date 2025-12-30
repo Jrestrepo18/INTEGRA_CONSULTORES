@@ -1,6 +1,6 @@
 import React from 'react';
-import { clientsContent } from '../data/content';
-import { useLanguage } from '../context/LanguageContext';
+import { clientsContent } from '../../data/content';
+import { useLanguage } from '../../context/LanguageContext';
 
 const ClientsCarousel = () => {
     const { t } = useLanguage();

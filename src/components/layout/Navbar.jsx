@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { Menu, X, ArrowRight } from 'lucide-react';
 import { NavLink, useLocation, Link } from 'react-router-dom';
-import { contactInfo } from '../data/content';
-import { useLanguage } from '../context/LanguageContext';
-import LanguageSelector from './LanguageSelector';
-import { logEvent } from '../utils/analytics';
+import { contactInfo } from '../../data/content';
+import { useLanguage } from '../../context/LanguageContext';
+import LanguageSelector from '../LanguageSelector';
+import { logEvent } from '../../utils/analytics';
 
 const Navbar = () => {
     const [isScrolled, setIsScrolled] = useState(false);

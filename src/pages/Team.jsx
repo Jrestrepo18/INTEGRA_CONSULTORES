@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { Users, CheckCircle2, MessageCircle, Star, ShieldCheck, Award, Target, Zap, Clock, Lock, CheckCircle } from 'lucide-react';
-import Reveal from '../components/Reveal';
+import Reveal from '../components/ui/Reveal';
 import { useLanguage } from '../context/LanguageContext';
 
 const Team = () => {

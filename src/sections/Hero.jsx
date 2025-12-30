@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { ChevronRight, Shield, Scale, Users, BookmarkCheck } from 'lucide-react';
 import { Link } from 'react-router-dom';
-import CorporateWavesCanvas from '../components/CorporateWavesCanvas';
-import Reveal from '../components/Reveal';
+import CorporateWavesCanvas from '../components/ui/CorporateWavesCanvas';
+import Reveal from '../components/ui/Reveal';
 import { siteInfo } from '../data/content';
 import { useLanguage } from '../context/LanguageContext';
 

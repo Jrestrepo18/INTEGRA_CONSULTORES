@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { ShieldCheck, Target, Users, CheckCircle, Eye, Award, Sparkles, ArrowRight } from 'lucide-react';
 import { Link, useLocation } from 'react-router-dom';
-import Reveal from '../components/Reveal';
+import Reveal from '../components/ui/Reveal';
 import { aboutContent } from '../data/content';
 import { useLanguage } from '../context/LanguageContext';
 

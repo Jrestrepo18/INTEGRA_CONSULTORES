@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { X, CheckCircle, Shield, ArrowRight, Clock, Award } from 'lucide-react';
-import { useLanguage } from '../context/LanguageContext';
+import { useLanguage } from '../../context/LanguageContext';
 
 const ServiceModal = ({ isOpen, onClose, serviceId, title, image }) => {
     const { t, tObj } = useLanguage();

@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { Handshake, MessageCircle, ShieldCheck, Award, Users, TrendingUp, Sparkles, Building2, ExternalLink, Factory, ShoppingBag, Leaf, Landmark, Briefcase } from 'lucide-react';
-import Reveal from '../components/Reveal';
+import Reveal from '../components/ui/Reveal';
 import { clientsContent } from '../data/content';
 import { useLanguage } from '../context/LanguageContext';
 

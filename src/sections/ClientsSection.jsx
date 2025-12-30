@@ -1,6 +1,6 @@
 import React from 'react';
 import { Building, Factory, ShoppingBag, Leaf, Building2, Landmark } from 'lucide-react';
-import Reveal from '../components/Reveal';
+import Reveal from '../components/ui/Reveal';
 import { useLanguage } from '../context/LanguageContext';
 
 const Clients = () => {

@@ -1,6 +1,6 @@
 import React from 'react';
 import { Scale, Users, ShieldCheck, ArrowRight, Sparkles } from 'lucide-react';
-import Reveal from '../components/Reveal';
+import Reveal from '../components/ui/Reveal';
 import { useLanguage } from '../context/LanguageContext';
 
 const WhatWeDo = () => {

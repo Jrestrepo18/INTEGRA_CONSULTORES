@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Award, Calendar, CheckCircle, TrendingUp, AlertTriangle } from 'lucide-react';
-import Reveal from '../components/Reveal';
+import Reveal from '../components/ui/Reveal';
 import { experienceContent } from '../data/content';
 import { useLanguage } from '../context/LanguageContext';
 

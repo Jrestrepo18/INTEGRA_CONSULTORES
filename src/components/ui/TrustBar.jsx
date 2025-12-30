@@ -1,5 +1,5 @@
 import React from 'react';
-import { trustBarStats } from '../data/content';
+import { trustBarStats } from '../../data/content';
 
 const TrustBar = () => {
     return (

@@ -1,6 +1,6 @@
 import React from 'react';
 import { Users, Award, Briefcase } from 'lucide-react';
-import Reveal from '../components/Reveal';
+import Reveal from '../components/ui/Reveal';
 import { useLanguage } from '../context/LanguageContext';
 
 const Team = () => {

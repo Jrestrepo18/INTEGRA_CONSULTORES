@@ -4,20 +4,19 @@ import { Helmet, HelmetProvider } from 'react-helmet-async';
 import { LanguageProvider } from './context/LanguageContext';
 
 // Componentes
-import Navbar from './components/Navbar';
+import Navbar from './components/layout/Navbar';
 import WhatsAppButton from './components/WhatsAppButton';
 import LoadingScreen from './components/LoadingScreen';
 import CookieBanner from './components/CookieBanner';
 
-// Secciones / Páginas
-// Secciones / Páginas (Lazy Loading)
+// Páginas (Lazy Loading)
 import Home from './pages/Home';
-const About = lazy(() => import('./sections/About'));
-const Services = lazy(() => import('./sections/Services'));
-const ContactSection = lazy(() => import('./sections/Contact'));
+const About = lazy(() => import('./pages/About'));
+const Services = lazy(() => import('./pages/Services'));
+const Contact = lazy(() => import('./pages/Contact'));
 const Team = lazy(() => import('./pages/Team'));
 const Clients = lazy(() => import('./pages/Clients'));
-import Footer from './components/Footer';
+import Footer from './components/layout/Footer';
 
 // Estilos
 import './styles/index.css';
@@ -116,7 +115,7 @@ function App() {
                   <Route path="/servicios" element={<Services />} />
                   <Route path="/nuestro-equipo" element={<Team />} />
                   <Route path="/clientes" element={<Clients />} />
-                  <Route path="/contacto" element={<ContactSection />} />
+                  <Route path="/contacto" element={<Contact />} />
                 </Routes>
               </Suspense>
             </main>
