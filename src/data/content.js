@@ -37,9 +37,9 @@ export const aboutContent = {
     description: `INTEGRA CONSULTORES fue fundada en 2019 por dos socios emprendedores, visionarios y apasionados por la excelencia, somos una empresa especializada en la identificación, el tratamiento y el diseño de controles de riesgo para organizaciones de todos los niveles.`,
     purpose: `Nuestro propósito es brindar a nuestros clientes la tranquilidad de enfocarse en sus actividades productivas, mientras gestionamos que nuestros clientes garanticen el cumplimiento normativo y la debida diligencia de cara a la normatividad legal vigente ante los entes de control, evitando así sanciones o penalidades por incumplimiento.`,
     team: `Contamos con un equipo interdisciplinario de amplia experiencia, orientado a que nuestros clientes obtengan resultados de alto impacto con una inversión inteligente y sin los costos de personal permanente.`,
-    mission: "Brindar soluciones tangibles en virtud de los riesgos a los cuales las diferentes organizaciones estan expuestas, mediante una asertiva, oportuna y eficaz respuesta; de la misma forma, interactuar de manera articulada con los requerimientops que por parte de las entidades regulatorias puen existir.",
+    mission: "Brindar soluciones tangibles en virtud de los riesgos a los cuales las diferentes organizaciones están expuestas, mediante una asertiva, oportuna y eficaz respuesta; de la misma forma, interactuar de manera articulada con los requerimientos que por parte de las entidades regulatorias puedan existir.",
     vision: "Ser al año 2028 reconocida a nivel regional como una de las empresas de consultoría en gestión integral del riesgo y gestión administrativa dentro del core del negocio.",
-    qualityPolicy: "La responsabilidad y compromiso en cada servicio prestado; así como el trabajo en equipo, celeridad de nuestros procesos y su mejora continua, son la más alta garantía de satisfacción de nuestros clientes. Sin duda, la capacidad y talento del equipo que conforma a Intrega Consultores, Servicios y Consultorías Legales son el motivo de nuestro éxito."
+    qualityPolicy: "La responsabilidad y compromiso en cada servicio prestado; así como el trabajo en equipo, celeridad de nuestros procesos y su mejora continua, son la más alta garantía de satisfacción de nuestros clientes. Sin duda, la capacidad y talento del equipo que conforma a Integra Consultores, Servicios y Consultorías Legales son el motivo de nuestro éxito."
 };
 
 // QUÉ HACEMOS
@@ -219,8 +219,8 @@ export const teamContent = {
         }
     ],
     helpSection: {
-        title: 'Como podemos ayudar!',
-        question: '¿Necesitas saber que hacer o como solucionar tu problema Jurídico?...',
+        title: '¡Cómo podemos ayudar!',
+        question: '¿Necesitas saber qué hacer o cómo solucionar tu problema Jurídico?...',
         cta: 'Contáctanos y recibe nuestra Asesoría y viabilidad del caso de forma Gratuita !!!'
     }
 };
@@ -243,22 +243,22 @@ export const clientsContent = {
         {
             name: 'INGRESEMOS',
             description: 'Proveedor de exámenes médicos ocupacionales',
-            link: '#'
+            link: 'https://ingresemos.com/'
         },
         {
             name: 'THREXIO',
             description: 'Plataforma de cobros y pasarela de pagos THREXIO',
-            link: '#'
+            link: 'https://www.threxio.com/'
         },
         {
             name: 'PORTAL FACTURA',
             description: 'Facturación y Nómina Electrónica',
-            link: '#'
+            link: 'https://portalfactura.com/'
         }
     ],
     helpSection: {
-        title: 'Como podemos ayudar!',
-        question: '¿Necesitas saber que hacer o como solucionar tu problema Jurídico?...',
+        title: '¡Cómo podemos ayudar!',
+        question: '¿Necesitas saber qué hacer o cómo solucionar tu problema Jurídico?...',
         cta: 'Contáctanos y recibe nuestra Asesoría y viabilidad del caso de forma Gratuita !!!'
     }
 };

@@ -1,6 +1,7 @@
 import React, { useState, useEffect, Suspense, lazy } from 'react';
 import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
 import { Helmet, HelmetProvider } from 'react-helmet-async';
+import { LanguageProvider } from './context/LanguageContext';
 
 // Componentes
 import Navbar from './components/Navbar';
@@ -35,32 +36,33 @@ function App() {
   const [isLoading, setIsLoading] = useState(true);
 
   return (
-    <HelmetProvider>
-      <Helmet>
-        {/* Título Principal */}
-        <title>Integra Consultores | Seguridad, Legal y Riesgos en Medellín</title>
+    <LanguageProvider>
+      <HelmetProvider>
+        <Helmet>
+          {/* Título Principal */}
+          <title>Integra Consultores | Seguridad, Legal y Riesgos en Medellín</title>
 
-        {/* Meta Descripción */}
-        <meta name="description" content="Expertos en Consultoría Jurídica, SG-SST, Seguridad Física y Gestión de Riesgos en Medellín y Colombia. Blindaje corporativo integral para su empresa." />
+          {/* Meta Descripción */}
+          <meta name="description" content="Expertos en Consultoría Jurídica, SG-SST, Seguridad Física y Gestión de Riesgos en Medellín y Colombia. Blindaje corporativo integral para su empresa." />
 
-        {/* Keywords */}
-        <meta name="keywords" content="abogados medellin, seguridad privada, consultoria legal, sg-sst, riesgos corporativos, integra consultores" />
+          {/* Keywords */}
+          <meta name="keywords" content="abogados medellin, seguridad privada, consultoria legal, sg-sst, riesgos corporativos, integra consultores" />
 
-        {/* Open Graph */}
-        <meta property="og:title" content="Integra Consultores - Protección Corporativa 360" />
-        <meta property="og:description" content="Soluciones legales, de seguridad y gestión humana para empresas en Colombia." />
-        <meta property="og:image" content="https://integraconsultoresgr.com/logo.png" />
-        <meta property="og:url" content="https://integraconsultoresgr.com/" />
+          {/* Open Graph */}
+          <meta property="og:title" content="Integra Consultores - Protección Corporativa 360" />
+          <meta property="og:description" content="Soluciones legales, de seguridad y gestión humana para empresas en Colombia." />
+          <meta property="og:image" content="https://integraconsultoresgr.com/logo.png" />
+          <meta property="og:url" content="https://integraconsultoresgr.com/" />
 
-        {/* Geo-tags */}
-        <meta name="geo.region" content="CO-ANT" />
-        <meta name="geo.placename" content="Medellín" />
-        <meta name="geo.position" content="6.2476;-75.5658" />
-        <meta name="ICBM" content="6.2476, -75.5658" />
+          {/* Geo-tags */}
+          <meta name="geo.region" content="CO-ANT" />
+          <meta name="geo.placename" content="Medellín" />
+          <meta name="geo.position" content="6.2476;-75.5658" />
+          <meta name="ICBM" content="6.2476, -75.5658" />
 
-        {/* JSON-LD Structured Data */}
-        <script type="application/ld+json">
-          {`
+          {/* JSON-LD Structured Data */}
+          <script type="application/ld+json">
+            {`
                   {
                     "@context": "https://schema.org",
                     "@type": "LegalService",
@@ -97,31 +99,32 @@ function App() {
                     "priceRange": "$$"
                   }
                 `}
-        </script>
-      </Helmet>
+          </script>
+        </Helmet>
 
-      {isLoading && <LoadingScreen onFinished={() => setIsLoading(false)} />}
-      <Router>
-        <ScrollToTop />
-        <div className={`font-sans text-slate-300 bg-[#020617] min-h-screen selection:bg-[#c5a67c] selection:text-white flex flex-col transition-opacity duration-1000 ${isLoading ? 'opacity-0' : 'opacity-100'}`}>
-          <Navbar />
-          <main className="flex-grow">
-            <Suspense fallback={<div className="h-screen flex items-center justify-center text-[#c5a67c]">Cargando...</div>}>
-              <Routes>
-                <Route path="/" element={<Home />} />
-                <Route path="/quienes-somos" element={<About />} />
-                <Route path="/servicios" element={<Services />} />
-                <Route path="/nuestro-equipo" element={<Team />} />
-                <Route path="/clientes" element={<Clients />} />
-                <Route path="/contacto" element={<ContactSection />} />
-              </Routes>
-            </Suspense>
-          </main>
-          <Footer />
-          <WhatsAppButton />
-        </div>
-      </Router>
-    </HelmetProvider>
+        {isLoading && <LoadingScreen onFinished={() => setIsLoading(false)} />}
+        <Router>
+          <ScrollToTop />
+          <div className={`font-sans text-slate-300 bg-[#020617] min-h-screen selection:bg-[#c5a67c] selection:text-white flex flex-col transition-opacity duration-1000 ${isLoading ? 'opacity-0' : 'opacity-100'}`}>
+            <Navbar />
+            <main className="flex-grow">
+              <Suspense fallback={<div className="h-screen flex items-center justify-center text-[#c5a67c]">Cargando...</div>}>
+                <Routes>
+                  <Route path="/" element={<Home />} />
+                  <Route path="/quienes-somos" element={<About />} />
+                  <Route path="/servicios" element={<Services />} />
+                  <Route path="/nuestro-equipo" element={<Team />} />
+                  <Route path="/clientes" element={<Clients />} />
+                  <Route path="/contacto" element={<ContactSection />} />
+                </Routes>
+              </Suspense>
+            </main>
+            <Footer />
+            <WhatsAppButton />
+          </div>
+        </Router>
+      </HelmetProvider>
+    </LanguageProvider>
   );
 }
 

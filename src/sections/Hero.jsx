@@ -3,24 +3,29 @@ import { ChevronRight, Shield, Scale, Users, BookmarkCheck } from 'lucide-react'
 import { Link } from 'react-router-dom';
 import CorporateWavesCanvas from '../components/CorporateWavesCanvas';
 import Reveal from '../components/Reveal';
-import { heroCarouselTexts, siteInfo } from '../data/content';
+import { siteInfo } from '../data/content';
+import { useLanguage } from '../context/LanguageContext';
 
 const Hero = () => {
     const [currentSlide, setCurrentSlide] = useState(0);
     const [isAnimating, setIsAnimating] = useState(false);
+    const { t, tObj } = useLanguage();
+
+    // Obtener slides traducidos
+    const heroSlides = tObj('hero.slides') || [];
 
     useEffect(() => {
         const interval = setInterval(() => {
             setIsAnimating(true);
             setTimeout(() => {
-                setCurrentSlide((prev) => (prev + 1) % heroCarouselTexts.length);
+                setCurrentSlide((prev) => (prev + 1) % heroSlides.length);
                 setIsAnimating(false);
             }, 600);
         }, 7000);
         return () => clearInterval(interval);
-    }, []);
+    }, [heroSlides.length]);
 
-    const currentText = heroCarouselTexts[currentSlide];
+    const currentText = heroSlides[currentSlide] || {};
 
     // Iconos que cambian según el slide
     const icons = [
@@ -50,7 +55,7 @@ const Hero = () => {
                                 </span>
                                 <div className="w-[1px] h-4 bg-white/20"></div>
                                 <span className="text-[10px] md:text-[11px] font-bold uppercase tracking-[0.4em] text-[#c5a67c]">
-                                    {siteInfo.pillars}
+                                    {t('siteInfo.pillars')}
                                 </span>
                             </div>
                         </Reveal>
@@ -60,7 +65,7 @@ const Hero = () => {
                                 className={`text-2xl md:text-4xl lg:text-5xl xl:text-6xl font-bold text-white leading-[1.15] transition-all duration-700 ease-out ${isAnimating ? 'opacity-0 translate-y-6 blur-sm' : 'opacity-100 translate-y-0 blur-0'}`}
                             >
                                 <span className="block text-slate-500 font-light text-sm md:text-lg uppercase tracking-[0.3em] mb-4">
-                                    Servicios y Consultorías Legales
+                                    {t('siteInfo.tagline')}
                                 </span>
                                 {currentText.title} <br />
                                 <span className="relative inline-block text-[#c5a67c] mt-1 font-extrabold">
@@ -82,14 +87,14 @@ const Hero = () => {
                                     to="/servicios"
                                     className="btn-wow px-12 py-5 bg-[#c5a67c] text-[#0f2a4a] font-bold text-xs uppercase tracking-[0.25em] rounded-sm flex items-center justify-center gap-3"
                                 >
-                                    Nuestros Servicios
+                                    {t('hero.servicesBtn')}
                                     <ChevronRight size={18} className="group-hover:translate-x-1 transition-transform" />
                                 </Link>
                                 <Link
                                     to="/contacto"
                                     className="btn-wow-secondary px-12 py-5 bg-transparent border border-white/20 text-white font-bold text-xs uppercase tracking-[0.25em] rounded-sm flex items-center justify-center"
                                 >
-                                    Solicitar Consultoría
+                                    {t('hero.consultBtn')}
                                 </Link>
                             </div>
                         </Reveal>
@@ -115,8 +120,8 @@ const Hero = () => {
 
                             {/* Panel de Estatus Lateral - Mejor alineado */}
                             <div className="absolute -right-16 top-1/2 -translate-y-1/2 bg-white/5 backdrop-blur-lg border border-white/10 p-5 rounded-sm shadow-xl min-w-[140px]">
-                                <div className="text-[10px] font-bold text-[#c5a67c] uppercase tracking-[0.25em] mb-2">Estatus</div>
-                                <div className="text-white text-[12px] font-medium tracking-wide">Análisis Activo</div>
+                                <div className="text-[10px] font-bold text-[#c5a67c] uppercase tracking-[0.25em] mb-2">{t('hero.status')}</div>
+                                <div className="text-white text-[12px] font-medium tracking-wide">{t('hero.activeAnalysis')}</div>
                                 <div className="flex gap-1.5 pt-3">
                                     <div className="w-1.5 h-1.5 bg-[#c5a67c] rounded-full animate-pulse"></div>
                                     <div className="w-1.5 h-1.5 bg-[#c5a67c]/30 rounded-full"></div>
@@ -131,7 +136,7 @@ const Hero = () => {
             {/* Navegación y Scroll - Posicionamiento Mejorado */}
             <div className="absolute bottom-12 left-6 md:left-12 flex items-center gap-10">
                 <div className="flex gap-3">
-                    {heroCarouselTexts.map((_, index) => (
+                    {heroSlides.map((_, index) => (
                         <button
                             key={index}
                             onClick={() => setCurrentSlide(index)}
@@ -145,14 +150,14 @@ const Hero = () => {
                     </span>
                     <div className="w-8 h-px bg-white/20"></div>
                     <span className="text-[11px] text-white/20 font-medium tracking-[0.3em]">
-                        0{heroCarouselTexts.length}
+                        0{heroSlides.length}
                     </span>
                 </div>
             </div>
 
             {/* Scroll Indicator Lado Derecho */}
             <div className="absolute bottom-12 right-12 hidden md:flex items-center gap-6 rotate-90 origin-right translate-y-[-50%]">
-                <span className="text-[10px] uppercase tracking-[0.6em] text-white/30 font-light">Scroll Down</span>
+                <span className="text-[10px] uppercase tracking-[0.6em] text-white/30 font-light">{t('hero.scrollDown')}</span>
                 <div className="w-20 h-px bg-gradient-to-r from-white/30 to-transparent"></div>
             </div>
 

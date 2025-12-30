@@ -1,9 +1,22 @@
 import React from 'react';
 import { Mail, Phone, MapPin, Instagram, Facebook, Linkedin, ArrowUpRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
-import { contactInfo, navLinks, siteInfo } from '../data/content';
+import { contactInfo, siteInfo } from '../data/content';
+import { useLanguage } from '../context/LanguageContext';
 
 const Footer = () => {
+    const { t } = useLanguage();
+
+    // Enlaces de navegación con traducciones
+    const navLinks = [
+        { label: t('nav.home'), path: '/' },
+        { label: t('nav.about'), path: '/quienes-somos' },
+        { label: t('nav.services'), path: '/servicios' },
+        { label: t('nav.team'), path: '/nuestro-equipo' },
+        { label: t('nav.clients'), path: '/clientes' },
+        { label: t('nav.contact'), path: '/contacto' }
+    ];
+
     return (
         <footer id="footer" className="bg-[#020617] text-slate-400 py-24 px-6 border-t border-white/5 relative overflow-hidden">
             {/* Elemento decorativo técnico en el fondo del footer */}
@@ -18,7 +31,7 @@ const Footer = () => {
                             <img src="/assets/brand/logo.png" alt="Integra logo" className="h-16 w-auto transition-transform duration-700 group-hover:scale-105" />
                         </Link>
                         <p className="text-[13px] leading-relaxed font-light opacity-60">
-                            {siteInfo.slogan}. Especialistas en diseño de estrategias de seguridad y gestión de riesgos organizacionales de alta complejidad.
+                            {siteInfo.slogan}. {t('footer.description')}
                         </p>
                         <div className="flex gap-4">
                             {[
@@ -43,7 +56,7 @@ const Footer = () => {
                     {/* Navegación Estratégica */}
                     <div>
                         <h4 className="text-white text-[11px] font-black uppercase tracking-[0.4em] mb-10 flex items-center gap-3">
-                            <span className="w-4 h-[1px] bg-[#c5a67c]"></span> Empresa
+                            <span className="w-4 h-[1px] bg-[#c5a67c]"></span> {t('footer.companyTitle')}
                         </h4>
                         <ul className="space-y-5 text-[13px] font-light">
                             {navLinks.map((link) => (
@@ -60,20 +73,20 @@ const Footer = () => {
                     {/* Servicios Destacados o Info Adicional */}
                     <div>
                         <h4 className="text-white text-[11px] font-black uppercase tracking-[0.4em] mb-10 flex items-center gap-3">
-                            <span className="w-4 h-[1px] bg-[#c5a67c]"></span> Enlace Rápido
+                            <span className="w-4 h-[1px] bg-[#c5a67c]"></span> {t('footer.quickLinksTitle')}
                         </h4>
                         <ul className="space-y-5 text-[13px] font-light">
-                            <li><Link to="/servicios" className="hover:text-[#c5a67c] transition-colors">Portafolio Integral</Link></li>
-                            <li><Link to="/contacto" className="hover:text-[#c5a67c] transition-colors">Solicitar Auditoría</Link></li>
-                            <li><Link to="/quienes-somos" className="hover:text-[#c5a67c] transition-colors">Nuestra Misión</Link></li>
-                            <li><Link to="/nuestro-equipo" className="hover:text-[#c5a67c] transition-colors">Liderazgo Técnico</Link></li>
+                            <li><Link to="/servicios" className="hover:text-[#c5a67c] transition-colors">{t('footer.portfolio')}</Link></li>
+                            <li><Link to="/contacto" className="hover:text-[#c5a67c] transition-colors">{t('footer.audit')}</Link></li>
+                            <li><Link to="/quienes-somos" className="hover:text-[#c5a67c] transition-colors">{t('footer.mission')}</Link></li>
+                            <li><Link to="/nuestro-equipo" className="hover:text-[#c5a67c] transition-colors">{t('footer.leadership')}</Link></li>
                         </ul>
                     </div>
 
                     {/* Contacto Ejecutivo */}
                     <div>
                         <h4 className="text-white text-[11px] font-black uppercase tracking-[0.4em] mb-10 flex items-center gap-3">
-                            <span className="w-4 h-[1px] bg-[#c5a67c]"></span> Central de Riesgos
+                            <span className="w-4 h-[1px] bg-[#c5a67c]"></span> {t('footer.contactTitle')}
                         </h4>
                         <div className="space-y-6 text-[13px] font-light">
                             <div className="flex items-start gap-4">
@@ -100,12 +113,12 @@ const Footer = () => {
                 {/* Línea de Cierre Legal */}
                 <div className="pt-12 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-6">
                     <div className="text-[10px] uppercase font-bold tracking-[0.2em] opacity-40">
-                        &copy; 2024 <span className="text-[#c5a67c]">INTEGRA CONSULTORES</span> | GESTIÓN DE RIESGOS INTEGRAL
+                        &copy; 2025 <span className="text-[#c5a67c]">INTEGRA CONSULTORES</span> | {t('footer.tagline')}
                     </div>
                     <div className="flex gap-8 text-[10px] uppercase font-bold tracking-[0.2em] opacity-40">
-                        <Link to="/" className="hover:opacity-100 transition-opacity">Privacidad</Link>
-                        <Link to="/" className="hover:opacity-100 transition-opacity">Términos</Link>
-                        <Link to="/" className="hover:opacity-100 transition-opacity">Legales</Link>
+                        <Link to="/" className="hover:opacity-100 transition-opacity">{t('footer.privacy')}</Link>
+                        <Link to="/" className="hover:opacity-100 transition-opacity">{t('footer.terms')}</Link>
+                        <Link to="/" className="hover:opacity-100 transition-opacity">{t('footer.legal')}</Link>
                     </div>
                 </div>
             </div>

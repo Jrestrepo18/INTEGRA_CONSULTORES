@@ -2,9 +2,14 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { Users, CheckCircle2, MessageCircle, Star, ShieldCheck, Award, Target, Zap, Clock, Lock, CheckCircle } from 'lucide-react';
 import Reveal from '../components/Reveal';
-import { teamContent } from '../data/content';
+import { useLanguage } from '../context/LanguageContext';
 
 const Team = () => {
+    const { t, tObj } = useLanguage();
+    const members = tObj('team.members') || [];
+    const differentiators = tObj('team.differentiatorsList') || [];
+    const helpSection = tObj('team.helpSection') || {};
+
     // Mapeo de iconos para factores diferenciadores para que se vean más profesionales
     const differentiatorIcons = [
         Award,      // Compromiso
@@ -23,36 +28,36 @@ const Team = () => {
 
                 {/* Breadcrumbs */}
                 <div className="flex items-center gap-2 text-[10px] font-bold uppercase tracking-[0.3em] text-slate-500 mb-12">
-                    <Link to="/" className="hover:text-[#c5a67c] transition-colors">Inicio</Link>
+                    <Link to="/" className="hover:text-[#c5a67c] transition-colors">{t('common.breadcrumb.home')}</Link>
                     <span>/</span>
-                    <span className="text-[#c5a67c]">{teamContent.title}</span>
+                    <span className="text-[#c5a67c]">{t('team.title')}</span>
                 </div>
 
                 <Reveal>
                     <div className="mb-24">
                         <div className="inline-flex items-center gap-3 px-3 py-1 bg-[#c5a67c]/10 border border-[#c5a67c]/20 rounded-full mb-8">
                             <Users size={12} className="text-[#c5a67c]" />
-                            <span className="text-[#c5a67c] text-[9px] font-black uppercase tracking-[0.3em]">{teamContent.subtitle}</span>
+                            <span className="text-[#c5a67c] text-[9px] font-black uppercase tracking-[0.3em]">{t('team.badge')}</span>
                         </div>
                         <h2 className="text-3xl md:text-5xl lg:text-6xl font-black text-white mb-10 tracking-tighter leading-none">
-                            {teamContent.headerText}
+                            {t('team.title')}
                         </h2>
                         <p className="text-slate-400 text-lg md:text-xl max-w-4xl font-light leading-relaxed border-l-2 border-[#c5a67c]/30 pl-6">
-                            {teamContent.description}
+                            {t('team.subtitle')}
                         </p>
                     </div>
                 </Reveal>
 
                 {/* Grid de Miembros del Equipo - Estilo Ejecutivo */}
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-10 mb-32">
-                    {teamContent.members.map((member, index) => (
+                    {members.map((member, index) => (
                         <Reveal key={index} delay={index * 150}>
                             <div className="group relative bg-[#020617] border border-white/5 rounded-sm overflow-hidden hover:border-[#c5a67c]/30 transition-all duration-700 h-full flex flex-col shadow-2xl">
                                 {/* Imagen del Miembro */}
                                 <div className="relative aspect-[4/5] overflow-hidden">
                                     <div className="absolute inset-0 bg-gradient-to-t from-[#020617] via-transparent to-transparent z-10 opacity-60"></div>
                                     <img
-                                        src={member.image}
+                                        src={`/assets/team/person_0${index + 1}.png`}
                                         alt={member.name}
                                         className="w-full h-full object-cover grayscale transition-all duration-1000 group-hover:grayscale-0 group-hover:scale-105"
                                         onError={(e) => {
@@ -68,10 +73,10 @@ const Team = () => {
 
                                 <div className="p-8 flex-grow">
                                     <h4 className="text-[9px] font-black text-slate-500 uppercase tracking-[0.4em] mb-6 flex items-center gap-3">
-                                        <div className="w-4 h-[1px] bg-[#c5a67c]/30"></div> Áreas Críticas
+                                        <div className="w-4 h-[1px] bg-[#c5a67c]/30"></div> {t('team.criticalAreas')}
                                     </h4>
                                     <ul className="space-y-4">
-                                        {member.specialties.map((spec, sIdx) => (
+                                        {member.specialties && member.specialties.map((spec, sIdx) => (
                                             <li key={sIdx} className="flex items-start gap-4 text-sm text-slate-400 font-light hover:text-white transition-colors duration-300">
                                                 <CheckCircle2 size={16} className="text-[#c5a67c] shrink-0 mt-0.5" />
                                                 <span>{spec}</span>
@@ -93,13 +98,13 @@ const Team = () => {
                     <div className="relative z-10">
                         <Reveal>
                             <div className="text-center mb-16">
-                                <span className="text-[#c5a67c] font-black tracking-[0.5em] uppercase text-[9px] mb-6 block">Nuestra Ventaja Competitiva</span>
-                                <h3 className="text-3xl md:text-5xl font-bold text-white tracking-tight">{teamContent.differentiatorsTitle}</h3>
+                                <span className="text-[#c5a67c] font-black tracking-[0.5em] uppercase text-[9px] mb-6 block">{t('team.differentiators')}</span>
+                                <h3 className="text-3xl md:text-5xl font-bold text-white tracking-tight">{t('team.differentiators')}</h3>
                                 <div className="w-16 h-1 bg-[#c5a67c] mx-auto mt-6"></div>
                             </div>
 
                             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-x-8 gap-y-12">
-                                {teamContent.differentiators.map((item, index) => {
+                                {differentiators.map((item, index) => {
                                     const Icon = differentiatorIcons[index] || ShieldCheck;
                                     return (
                                         <div key={index} className="relative group text-center">
@@ -134,19 +139,19 @@ const Team = () => {
                         <div className="absolute bottom-0 right-0 w-80 h-80 bg-[#c5a67c]/5 rounded-full blur-3xl translate-x-1/2 translate-y-1/2"></div>
                         <div className="relative z-10 max-w-4xl mx-auto">
                             <span className="text-[#c5a67c] font-black uppercase tracking-[0.4em] text-[9px] mb-8 block">
-                                Canales de Atención Inmediata
+                                {t('team.immediateChannels')}
                             </span>
                             <h2 className="text-3xl md:text-6xl font-bold text-white mb-10 leading-tight tracking-tight">
-                                {teamContent.helpSection.question}
+                                {helpSection.question || t('clients.helpSection.question')}
                             </h2>
                             <p className="text-slate-400 text-lg md:text-xl font-light italic mb-16 opacity-80">
-                                {teamContent.helpSection.cta}
+                                {helpSection.cta || t('clients.helpSection.cta')}
                             </p>
                             <Link
                                 to="/contacto"
                                 className="btn-wow inline-flex items-center gap-4 px-12 py-6 bg-[#c5a67c] text-[#020617] text-[11px] font-black uppercase tracking-[0.3em] rounded-sm shadow-[0_20px_40px_rgba(197,166,124,0.2)]"
                             >
-                                Iniciar Consultoría Legal <MessageCircle size={18} />
+                                {t('nav.contact')} <MessageCircle size={18} />
                             </Link>
                         </div>
                     </div>

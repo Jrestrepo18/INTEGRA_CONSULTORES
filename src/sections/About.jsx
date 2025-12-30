@@ -3,10 +3,12 @@ import { ShieldCheck, Target, Users, CheckCircle, Eye, Award, Sparkles, ArrowRig
 import { Link, useLocation } from 'react-router-dom';
 import Reveal from '../components/Reveal';
 import { aboutContent } from '../data/content';
+import { useLanguage } from '../context/LanguageContext';
 
 const About = () => {
     const location = useLocation();
     const isFullPage = location.pathname === '/quienes-somos';
+    const { t } = useLanguage();
 
     const [currentImage, setCurrentImage] = useState(0);
     const images = [
@@ -24,7 +26,7 @@ const About = () => {
     }, [images.length]);
 
     return (
-        <section id="about" className={`py-32 ${isFullPage ? 'bg-[#02010a]' : 'bg-white'} overflow-hidden relative`}>
+        <section id="about" className={`py-16 md:py-24 lg:py-32 ${isFullPage ? 'bg-[#02010a]' : 'bg-white'} overflow-hidden relative`}>
             {/* Decoración técnica de fondo para Full Page */}
             {isFullPage && (
                 <div className="absolute inset-0 opacity-[0.03] pointer-events-none" style={{ backgroundImage: 'radial-gradient(#c5a67c 1px, transparent 1px)', backgroundSize: '40px 40px' }}></div>
@@ -39,27 +41,27 @@ const About = () => {
                 {/* Breadcrumbs solo para full page */}
                 {isFullPage && (
                     <div className="flex items-center gap-2 text-[10px] font-black uppercase tracking-[0.4em] text-slate-500 mb-12">
-                        <Link to="/" className="hover:text-[#c5a67c] transition-colors">Inicio</Link>
+                        <Link to="/" className="hover:text-[#c5a67c] transition-colors">{t('common.breadcrumb.home')}</Link>
                         <span>/</span>
-                        <span className="text-[#c5a67c]">Quiénes Somos</span>
+                        <span className="text-[#c5a67c]">{t('about.title')}</span>
                     </div>
                 )}
 
-                <div className="grid lg:grid-cols-2 gap-24 items-center">
+                <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
                     <Reveal>
                         <div className="relative group">
                             {/* Brillo dinámico de fondo */}
                             <div className="absolute -inset-4 bg-gradient-to-tr from-[#c5a67c]/10 to-transparent blur-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-1000"></div>
 
                             {/* Contenedor del Carrusel - Estilo Galería de Arte */}
-                            <div className="aspect-[4/5] bg-[#020617] p-px relative overflow-hidden shadow-2xl">
+                            <div className="aspect-[5/4] md:aspect-[4/5] bg-[#020617] p-px relative overflow-hidden shadow-2xl max-w-[300px] md:max-w-[480px] mx-auto">
                                 {images.map((img, idx) => (
                                     <div
                                         key={idx}
                                         className={`absolute inset-0 transition-all duration-1000 ease-in-out flex items-center justify-center ${idx === currentImage ? 'opacity-100 scale-100' : 'opacity-0 scale-110 pointer-events-none'}`}
                                     >
                                         {img.type === 'logo' ? (
-                                            <div className="p-24 flex items-center justify-center w-full h-full bg-[#020617]">
+                                            <div className="p-16 md:p-20 flex items-center justify-center w-full h-full bg-[#020617]">
                                                 <img
                                                     src={img.content}
                                                     alt="Integra"
@@ -80,7 +82,7 @@ const About = () => {
                                 ))}
 
                                 {/* Barra de Progreso Minimalista */}
-                                <div className="absolute bottom-10 left-10 right-10 flex gap-3 z-20">
+                                <div className="absolute bottom-6 left-6 right-6 md:bottom-8 md:left-8 md:right-8 flex gap-2 z-20">
                                     {images.map((_, idx) => (
                                         <button
                                             key={idx}
@@ -91,10 +93,10 @@ const About = () => {
                                 </div>
 
                                 {/* Badge de Prestigio */}
-                                <div className="absolute top-10 right-10 bg-[#c5a67c] px-6 py-6 shadow-2xl z-30 transform hover:-translate-y-1 transition-transform">
-                                    <div className="text-2xl font-black text-[#020617] tracking-tighter leading-none">2019</div>
-                                    <div className="text-[8px] text-[#020617] uppercase font-black tracking-[0.2em] mt-1 border-t border-[#020617]/20 pt-1">
-                                        Fundación
+                                <div className="absolute top-6 right-6 md:top-8 md:right-8 bg-[#c5a67c] px-4 py-4 md:px-5 md:py-5 shadow-2xl z-30 transform hover:-translate-y-1 transition-transform">
+                                    <div className="text-xl md:text-2xl font-black text-[#020617] tracking-tighter leading-none">2019</div>
+                                    <div className="text-[7px] md:text-[8px] text-[#020617] uppercase font-black tracking-[0.2em] mt-1 border-t border-[#020617]/20 pt-1">
+                                        {t('about.foundation')}
                                     </div>
                                 </div>
                             </div>
@@ -104,29 +106,29 @@ const About = () => {
                     {/* Contenido Principal */}
                     <Reveal delay={200}>
                         <div className="lg:pl-6">
-                            <div className="inline-flex items-center gap-3 px-3 py-1 bg-[#c5a67c]/10 border border-[#c5a67c]/20 rounded-full text-[#c5a67c] text-[9px] font-black uppercase tracking-[0.3em] mb-8">
-                                <ShieldCheck size={12} /> Trayectoria Institucional
+                            <div className="inline-flex items-center gap-2 px-3 py-1 bg-[#c5a67c]/10 border border-[#c5a67c]/20 rounded-full text-[#c5a67c] text-[9px] font-black uppercase tracking-[0.3em] mb-6">
+                                <ShieldCheck size={12} /> {t('about.badge')}
                             </div>
 
-                            <h2 className={`text-3xl md:text-5xl lg:text-6xl font-black mb-10 leading-none tracking-tighter ${isFullPage ? 'text-white' : 'text-[#0f2a4a]'}`}>
-                                {aboutContent.title.split(' ')[0]} <br />
-                                <span className="text-[#c5a67c]">{aboutContent.title.split(' ').slice(1).join(' ')}</span>
+                            <h2 className={`text-2xl md:text-3xl lg:text-4xl font-black mb-5 md:mb-6 leading-none tracking-tighter ${isFullPage ? 'text-white' : 'text-[#0f2a4a]'}`}>
+                                {t('about.title').split(' ')[0]} <br />
+                                <span className="text-[#c5a67c]">{t('about.title').split(' ').slice(1).join(' ')}</span>
                             </h2>
 
-                            <div className="space-y-8">
-                                <p className={`text-lg leading-relaxed ${isFullPage ? 'text-slate-400' : 'text-slate-500'}`}>
-                                    <span className={isFullPage ? 'text-white font-bold' : 'text-[#0f2a4a] font-bold'}>INTEGRA CONSULTORES</span> {aboutContent.description.replace('INTEGRA CONSULTORES ', '')}
+                            <div className="space-y-4 md:space-y-5">
+                                <p className={`text-sm md:text-sm lg:text-base leading-relaxed ${isFullPage ? 'text-slate-400' : 'text-slate-500'}`}>
+                                    <span className={isFullPage ? 'text-white font-bold' : 'text-[#0f2a4a] font-bold'}>INTEGRA CONSULTORES</span> {t('about.description').replace('INTEGRA CONSULTORES ', '')}
                                 </p>
 
-                                <p className={`leading-relaxed font-light ${isFullPage ? 'text-slate-500' : 'text-slate-400'}`}>
-                                    {aboutContent.purpose}
+                                <p className={`text-xs md:text-sm lg:text-sm leading-relaxed font-light ${isFullPage ? 'text-slate-500' : 'text-slate-400'}`}>
+                                    {t('about.purpose')}
                                 </p>
 
-                                <div className={`flex items-start gap-6 p-10 border-l-2 border-[#c5a67c] italic font-light relative overflow-hidden group ${isFullPage ? 'bg-white/5 text-slate-300' : 'bg-slate-50 text-slate-600'}`}>
-                                    <div className="absolute top-0 right-0 p-4 opacity-5 group-hover:opacity-10 transition-opacity">
-                                        <Award size={64} />
+                                <div className={`flex items-start gap-3 p-4 md:p-6 border-l-2 border-[#c5a67c] italic font-light relative overflow-hidden group ${isFullPage ? 'bg-white/5 text-slate-300' : 'bg-slate-50 text-slate-600'}`}>
+                                    <div className="absolute top-0 right-0 p-3 opacity-5 group-hover:opacity-10 transition-opacity">
+                                        <Award size={44} />
                                     </div>
-                                    <span className="relative z-10 text-xl leading-relaxed">"{aboutContent.team}"</span>
+                                    <span className="relative z-10 text-sm md:text-base lg:text-lg leading-relaxed">"{t('about.team')}"</span>
                                 </div>
                             </div>
 
@@ -134,9 +136,9 @@ const About = () => {
                                 <div className="mt-16">
                                     <Link
                                         to="/quienes-somos"
-                                        className="btn-wow inline-flex items-center gap-4 px-12 py-6 bg-[#0f2a4a] text-white text-[10px] font-black uppercase tracking-[0.3em] rounded-sm shadow-2xl"
+                                        className="btn-wow inline-flex items-center gap-3 px-10 py-5 bg-[#0f2a4a] text-white text-[10px] font-black uppercase tracking-[0.25em] rounded-sm shadow-2xl"
                                     >
-                                        Nuestra Misión <ArrowRight size={16} />
+                                        {t('about.missionBtn')} <ArrowRight size={16} />
                                     </Link>
                                 </div>
                             )}
@@ -154,9 +156,9 @@ const About = () => {
                                     <div className="w-12 h-12 bg-[#c5a67c]/10 rounded-full flex items-center justify-center mb-8 group-hover:bg-[#c5a67c] transition-all duration-700">
                                         <Target className="text-[#c5a67c] group-hover:text-[#020617] transition-all" size={24} />
                                     </div>
-                                    <h3 className="text-xl font-black text-white mb-6 tracking-tight uppercase">Misión Corporativa</h3>
+                                    <h3 className="text-xl font-black text-white mb-6 tracking-tight uppercase">{t('about.missionTitle')}</h3>
                                     <p className="text-slate-400 leading-relaxed font-light italic text-lg">
-                                        "{aboutContent.mission}"
+                                        "{t('about.mission')}"
                                     </p>
                                 </div>
                             </Reveal>
@@ -167,9 +169,9 @@ const About = () => {
                                     <div className="w-12 h-12 bg-[#c5a67c]/10 rounded-full flex items-center justify-center mb-8 group-hover:bg-[#c5a67c] transition-all duration-700">
                                         <Eye className="text-[#c5a67c] group-hover:text-[#020617] transition-all" size={24} />
                                     </div>
-                                    <h3 className="text-xl font-black text-white mb-6 tracking-tight uppercase">Visión Estratégica</h3>
+                                    <h3 className="text-xl font-black text-white mb-6 tracking-tight uppercase">{t('about.visionTitle')}</h3>
                                     <p className="text-slate-400 leading-relaxed font-light italic text-lg">
-                                        "{aboutContent.vision}"
+                                        "{t('about.vision')}"
                                     </p>
                                 </div>
                             </Reveal>
@@ -181,11 +183,11 @@ const About = () => {
                                 <div className="relative z-10 max-w-4xl mx-auto">
                                     <div className="mb-8 inline-flex items-center gap-3 px-4 py-2 bg-[#c5a67c]/10 rounded-full">
                                         <Award size={16} className="text-[#c5a67c]" />
-                                        <span className="text-[#c5a67c] text-[9px] font-black uppercase tracking-[0.4em]">Estándar de Excelencia</span>
+                                        <span className="text-[#c5a67c] text-[9px] font-black uppercase tracking-[0.4em]">{t('about.qualityBadge')}</span>
                                     </div>
-                                    <h3 className="text-3xl md:text-4xl lg:text-5xl font-black text-white mb-8 tracking-tighter leading-none">Política de Calidad</h3>
+                                    <h3 className="text-3xl md:text-4xl lg:text-5xl font-black text-white mb-8 tracking-tighter leading-none">{t('about.qualityTitle')}</h3>
                                     <p className="text-slate-300 text-lg md:text-2xl leading-relaxed font-light italic opacity-90 mx-auto max-w-4xl">
-                                        "{aboutContent.qualityPolicy}"
+                                        "{t('about.qualityPolicy')}"
                                     </p>
                                     <div className="mt-12 w-24 h-[1px] bg-[#c5a67c]/30 mx-auto"></div>
                                 </div>

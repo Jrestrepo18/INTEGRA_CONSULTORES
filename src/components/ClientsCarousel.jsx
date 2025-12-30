@@ -1,7 +1,9 @@
 import React from 'react';
 import { clientsContent } from '../data/content';
+import { useLanguage } from '../context/LanguageContext';
 
 const ClientsCarousel = () => {
+    const { t } = useLanguage();
     // Usamos los logos originales para cada bloque del scroll
     const logos = clientsContent.clients;
 
@@ -13,9 +15,9 @@ const ClientsCarousel = () => {
             <div className="max-w-7xl mx-auto px-6 mb-16 text-center">
                 <div className="inline-flex items-center gap-3 px-3 py-1 bg-[#c5a67c]/5 border border-[#c5a67c]/10 rounded-full mb-4">
                     <div className="w-1 h-1 bg-[#c5a67c] rounded-full animate-pulse"></div>
-                    <span className="text-[#c5a67c] text-[9px] font-black uppercase tracking-[0.4em]">Respaldo Corporativo</span>
+                    <span className="text-[#c5a67c] text-[9px] font-black uppercase tracking-[0.4em]">{t('clients.carousel.badge')}</span>
                 </div>
-                <h2 className="text-white text-2xl md:text-3xl font-bold tracking-tight">Instituciones que certifican nuestra <span className="text-[#c5a67c]">Excelencia</span></h2>
+                <h2 className="text-white text-2xl md:text-3xl font-bold tracking-tight">{t('clients.carousel.title')} <span className="text-[#c5a67c]">{t('clients.carousel.excellence')}</span></h2>
             </div>
 
             <div className="relative flex overflow-hidden">

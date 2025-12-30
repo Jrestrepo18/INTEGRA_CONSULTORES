@@ -1,16 +1,33 @@
 import React, { useState, useEffect } from 'react';
 import { Menu, X, ArrowRight } from 'lucide-react';
 import { NavLink, useLocation, Link } from 'react-router-dom';
-import { navLinks, contactInfo } from '../data/content';
+import { contactInfo } from '../data/content';
+import { useLanguage } from '../context/LanguageContext';
+import LanguageSelector from './LanguageSelector';
 
 const Navbar = () => {
     const [isScrolled, setIsScrolled] = useState(false);
+    const [isVisible, setIsVisible] = useState(true);
     const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
     const location = useLocation();
+    const { t } = useLanguage();
+
+    // Enlaces de navegación con traducciones
+    const navLinks = [
+        { label: t('nav.home'), path: '/' },
+        { label: t('nav.about'), path: '/quienes-somos' },
+        { label: t('nav.services'), path: '/servicios' },
+        { label: t('nav.team'), path: '/nuestro-equipo' },
+        { label: t('nav.clients'), path: '/clientes' },
+        { label: t('nav.contact'), path: '/contacto' }
+    ];
 
     useEffect(() => {
-        const handleScroll = () => setIsScrolled(window.scrollY > 50);
-        window.addEventListener('scroll', handleScroll);
+        const handleScroll = () => {
+            setIsScrolled(window.scrollY > 50);
+        };
+
+        window.addEventListener('scroll', handleScroll, { passive: true });
         return () => window.removeEventListener('scroll', handleScroll);
     }, []);
 
@@ -20,97 +37,127 @@ const Navbar = () => {
 
     const isHomePage = location.pathname === '/';
 
-    // El Navbar siempre tendrá un estilo oscuro pero con variaciones de transparencia
-    const navBgClass = (isScrolled || !isHomePage)
-        ? 'py-4 bg-[#020617]/90 backdrop-blur-xl border-b border-white/5 shadow-2xl'
-        : 'py-6 bg-transparent';
+    // El Navbar cambia a un estilo "pill" flotante al hacer scroll
+    const isFloating = isScrolled || !isHomePage;
 
     return (
-        <nav className={`fixed top-0 w-full z-50 transition-all duration-700 ${navBgClass}`}>
-            <div className="max-w-7xl mx-auto px-6 flex justify-between items-center">
+        <>
+            <nav className={`fixed top-0 w-full z-50 transition-all duration-500 ${isFloating ? 'pt-4' : 'pt-0'}`}>
+                <div className={`
+                    transition-all duration-500 mx-auto flex justify-between items-center
+                    ${isFloating
+                        ? 'max-w-5xl bg-[#020617]/80 backdrop-blur-xl border border-white/10 rounded-full py-3 px-8 shadow-[0_20px_50px_rgba(0,0,0,0.5)]'
+                        : 'max-w-7xl py-6 px-6 bg-transparent'}
+                `}>
 
-                <Link to="/" className="flex items-center gap-3 cursor-pointer group">
-                    <img
-                        src="/assets/brand/logo.png"
-                        alt="Integra Consultores"
-                        className={`w-auto object-contain transition-all duration-500 group-hover:scale-105 ${isScrolled || !isHomePage ? 'h-10' : 'h-12'}`}
-                    />
-                </Link>
+                    <Link to="/" className="flex items-center gap-3 cursor-pointer group">
+                        <img
+                            src="/assets/brand/logo.png"
+                            alt="Integra Consultores"
+                            className={`w-auto object-contain transition-all duration-500 group-hover:scale-105 ${isFloating ? 'h-8' : 'h-12'}`}
+                        />
+                    </Link>
 
-                {/* Desktop Menu - Estilo Ejecutivo */}
-                <div className="hidden lg:flex items-center gap-12 text-[10px] font-black uppercase tracking-[0.4em] text-white">
-                    {navLinks.map((link) => (
-                        <NavLink
-                            key={link.path}
-                            to={link.path}
-                            className={({ isActive }) =>
-                                `relative group py-2 transition-all duration-500 ${isActive ? 'text-[#c5a67c]' : 'text-slate-300 hover:text-white'}`
-                            }
+                    {/* Desktop Menu - Estilo Ejecutivo */}
+                    <div className={`hidden lg:flex items-center transition-all duration-500 ${isFloating ? 'gap-8 text-[9px] tracking-[0.2em]' : 'gap-10 text-[11px] tracking-[0.3em]'} font-black uppercase text-white`}>
+                        {navLinks.map((link) => (
+                            <NavLink
+                                key={link.path}
+                                to={link.path}
+                                className={({ isActive }) =>
+                                    `relative group py-2 transition-all duration-500 whitespace-nowrap ${isActive ? 'text-[#c5a67c]' : 'text-slate-300 hover:text-white'}`
+                                }
+                            >
+                                {link.label}
+                                {!isFloating && (
+                                    <span className={`absolute -bottom-1 left-0 h-[1px] bg-[#c5a67c] transition-all duration-500 ${location.pathname === link.path ? 'w-full' : 'w-0 group-hover:w-full'}`}></span>
+                                )}
+                            </NavLink>
+                        ))}
+                    </div>
+
+                    <div className="hidden lg:flex items-center gap-4">
+                        <LanguageSelector />
+                        <a
+                            href={`https://wa.me/${contactInfo.whatsapp}`}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className={`btn-wow relative overflow-hidden bg-[#c5a67c] text-[#020617] text-[9px] font-black uppercase tracking-[0.2em] rounded-full flex items-center gap-3 shadow-[0_10px_20px_rgba(197,166,124,0.15)] group transition-all duration-500 ${isFloating ? 'px-6 py-2.5' : 'px-8 py-3.5'}`}
                         >
-                            {link.label}
-                            <span className={`absolute -bottom-1 left-0 h-[1px] bg-[#c5a67c] transition-all duration-500 ${location.pathname === link.path ? 'w-full' : 'w-0 group-hover:w-full'}`}></span>
-                        </NavLink>
-                    ))}
-                </div>
+                            <span>{t('nav.contactUs')}</span>
+                            <ArrowRight size={14} className="group-hover:translate-x-1 transition-transform" />
+                        </a>
+                    </div>
 
-                <div className="hidden lg:block">
-                    <a
-                        href={`https://wa.me/${contactInfo.whatsapp}`}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="btn-wow relative overflow-hidden px-8 py-3.5 bg-[#c5a67c] text-[#020617] text-[10px] font-black uppercase tracking-[0.2em] rounded-sm flex items-center gap-3 shadow-[0_10px_20px_rgba(197,166,124,0.15)] group"
+                    {/* Mobile Menu Button */}
+                    <button
+                        className="lg:hidden p-2 text-white"
+                        onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+                        aria_label={t('nav.aria.openMenu')}
                     >
-                        <span>Acceso Ejecutivo</span>
-                        <ArrowRight size={14} className="group-hover:translate-x-1 transition-transform" />
-                    </a>
-                </div>
-
-                {/* Mobile Menu Button */}
-                <button
-                    className="lg:hidden p-2 text-white"
-                    onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-                    aria-label="Abrir menú"
-                >
-                    {mobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
-                </button>
-            </div>
-
-            {/* Mobile Menu - Pantalla Completa Dark */}
-            <div className={`lg:hidden fixed inset-0 top-0 bg-[#020617] z-[100] transition-all duration-700 flex flex-col p-8 ${mobileMenuOpen ? 'translate-x-0 opacity-100' : 'translate-x-full opacity-0'}`}>
-                <div className="flex justify-between items-center mb-16">
-                    <img src="/assets/brand/logo.png" alt="Integra" className="h-10 w-auto" />
-                    <button onClick={() => setMobileMenuOpen(false)} className="text-white" aria-label="Cerrar menú">
-                        <X size={32} />
+                        {mobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
                     </button>
                 </div>
+            </nav>
 
-                <div className="flex flex-col gap-8">
-                    {navLinks.map((link) => (
-                        <NavLink
-                            key={link.path}
-                            to={link.path}
-                            className={({ isActive }) =>
-                                `text-2xl font-black uppercase tracking-[0.2em] transition-all ${isActive ? 'text-[#c5a67c]' : 'text-slate-500'}`
-                            }
+            {/* Mobile Menu - FUERA del nav para evitar conflictos de z-index */}
+            {mobileMenuOpen && (
+                <div
+                    className="lg:hidden fixed inset-0 flex flex-col"
+                    style={{
+                        zIndex: 99999,
+                        backgroundColor: '#020617'
+                    }}
+                >
+                    {/* Header del menú móvil */}
+                    <div className="flex justify-between items-center p-6 border-b border-white/10" style={{ backgroundColor: '#020617' }}>
+                        <img src="/assets/brand/logo.png" alt="Integra" className="h-9 w-auto" />
+                        <button
+                            onClick={() => setMobileMenuOpen(false)}
+                            className="w-10 h-10 flex items-center justify-center rounded-full bg-white/10 text-white hover:bg-[#c5a67c] hover:text-[#020617] transition-all duration-300"
+                            aria_label={t('nav.aria.closeMenu')}
                         >
-                            {link.label}
-                        </NavLink>
-                    ))}
-                </div>
+                            <X size={20} />
+                        </button>
+                    </div>
 
-                <div className="mt-auto pb-12">
-                    <a
-                        href={`https://wa.me/${contactInfo.whatsapp}`}
-                        className="w-full py-6 bg-[#c5a67c] text-[#020617] flex items-center justify-center gap-3 font-black uppercase tracking-[0.3em] text-xs rounded-sm shadow-2xl"
-                    >
-                        Contactar Ahora <ArrowRight size={18} />
-                    </a>
-                    <div className="mt-10 text-center text-slate-600 text-[10px] uppercase font-bold tracking-widest">
-                        &copy; 2024 INTEGRA CONSULTORES
+                    {/* Enlaces a la izquierda */}
+                    <div className="flex-1 flex flex-col justify-center gap-2 px-6 py-8" style={{ backgroundColor: '#020617' }}>
+                        {navLinks.map((link) => (
+                            <NavLink
+                                key={link.path}
+                                to={link.path}
+                                className={({ isActive }) =>
+                                    `text-2xl font-bold uppercase tracking-[0.15em] py-4 px-4 rounded-lg transition-colors duration-300 ${isActive
+                                        ? 'text-[#c5a67c] bg-[#c5a67c]/10 border-l-4 border-[#c5a67c]'
+                                        : 'text-slate-300 hover:text-white hover:bg-white/5'
+                                    }`
+                                }
+                            >
+                                {link.label}
+                            </NavLink>
+                        ))}
+                    </div>
+
+                    {/* Footer del menú móvil */}
+                    <div className="p-6 space-y-4 border-t border-white/10" style={{ backgroundColor: '#020617' }}>
+                        {/* Selector de idioma móvil */}
+                        <div className="flex justify-center mb-4">
+                            <LanguageSelector variant="mobile" />
+                        </div>
+                        <a
+                            href={`https://wa.me/${contactInfo.whatsapp}`}
+                            className="w-full py-4 bg-[#c5a67c] text-[#020617] flex items-center justify-center gap-3 font-bold uppercase tracking-[0.2em] text-xs rounded-lg shadow-lg shadow-[#c5a67c]/20 hover:shadow-[#c5a67c]/40 hover:scale-[1.02] transition-all duration-300"
+                        >
+                            {t('nav.contactNow')} <ArrowRight size={16} />
+                        </a>
+                        <div className="text-center text-slate-500 text-[10px] uppercase font-semibold tracking-widest pt-2">
+                            {t('footer.copyright')}
+                        </div>
                     </div>
                 </div>
-            </div>
-        </nav>
+            )}
+        </>
     );
 };
 
