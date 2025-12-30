@@ -158,7 +158,134 @@ const en = {
             { id: 23, title: 'PBI Business Intelligence Analysis' },
             { id: 24, title: 'SIG Implementation & Follow-up' },
             { id: 25, title: 'Drone Overflight' }
-        ]
+        ],
+        details: {
+            1: {
+                description: 'Exhaustive evaluation of security protocols, systems, and personnel to identify vulnerabilities and potential risks in your organization.',
+                features: ['Physical perimeter analysis', 'Electronic systems audit', 'Response protocol evaluation', 'Critical zone mapping'],
+                benefits: ['Intrusion prevention', 'Resource optimization', 'Standards compliance']
+            },
+            2: {
+                description: 'Design and implementation of the Occupational Health and Safety Management System under current legal regulations (Resolution 0312).',
+                features: ['Labor risk mapping', 'Brigade training', 'Complete legal documentation', 'Follow-up audits'],
+                benefits: ['Avoids legal sanctions', 'Human talent protection', 'Improves productivity']
+            },
+            3: {
+                description: 'Specialized and continuous legal advice in corporate, civil, and administrative law to shield your company against legal contingencies.',
+                features: ['Contract review', 'Litigation representation', 'Legal due diligence', 'Preventive consultations'],
+                benefits: ['Asset shielding', 'Transaction security', 'Legal cost reduction']
+            },
+            4: {
+                description: 'Rigorous verification of backgrounds, references, and profiles to ensure the reliability of personnel entering critical positions.',
+                features: ['Professional home visit', 'Socioeconomic study', 'Criminal record validation', 'Technical polygraphy'],
+                benefits: ['Minimizes internal risk', 'Reliable hiring', 'Asset protection']
+            },
+            5: {
+                description: 'Technical and forensic analysis of incidents or claims to determine real causes and facilitate claim processes with insurers.',
+                features: ['Evidence collection', 'Reconstructive analysis', 'Technical expert reports', 'Legal support'],
+                benefits: ['Clarity on facts', 'Speeds up compensation', 'Lessons learned']
+            },
+            6: {
+                description: 'Strategic search and evaluation process for human talent aligned with your organization\'s culture and objectives.',
+                features: ['Psychometric tests', 'Competency interviews', 'Specialized headhunting', 'Strategic onboarding'],
+                benefits: ['Reduced turnover', 'High-quality talent', 'Time savings in search']
+            },
+            7: {
+                description: 'Comprehensive management of the employee lifecycle, from hiring to termination, ensuring compliance with labor legislation.',
+                features: ['Payroll management', 'Social security affiliations', 'Contract control', 'Settlement management'],
+                benefits: ['Operational load reduction', 'Legal risk mitigation', 'Administrative order']
+            },
+            8: {
+                description: 'Evaluation and diagnosis of employee perception of their work environment to improve retention and productivity.',
+                features: ['Psychometric surveys', 'Focus groups', 'Leadership analysis', 'Cultural improvement plans'],
+                benefits: ['Productivity increase', 'Reduced turnover', 'Better work environment']
+            },
+            9: {
+                description: 'Expert advice on the selection and optimization of insurance policies to guarantee maximum coverage at the lowest possible cost.',
+                features: ['Current policy audit', 'Transferable risk analysis', 'Negotiation with insurers', 'Claims management'],
+                benefits: ['Premium savings', 'Real coverage', 'Financial peace of mind']
+            },
+            10: {
+                description: 'Technical physical security studies for high-complexity industrial, commercial, or residential facilities.',
+                features: ['Vulnerability analysis', 'Security ring design', 'Access control evaluation', 'Emergency plan'],
+                benefits: ['Facility protection', 'Crime deterrence', 'Business continuity']
+            },
+            11: {
+                description: 'Coordination and management of pre-employment, periodic, and exit medical exams for personnel, complying with occupational health law.',
+                features: ['General medical exams', 'Position-specific tests', 'Profesiogram management', 'Recommendation follow-up'],
+                benefits: ['Legal compliance', 'Work-related illness prevention', 'Absenteeism control']
+            },
+            12: {
+                description: 'Expert support for obtaining international quality, security, and environmental certifications (ISO, BASC, etc.).',
+                features: ['Initial diagnosis', 'Document design', 'Internal auditor training', 'External audit support'],
+                benefits: ['International prestige', 'Access to new markets', 'Operational efficiency']
+            },
+            13: {
+                description: 'Management and coordination of strategic links with public and security institutions to strengthen corporate environment protection.',
+                features: ['Security meetings', 'Support networks', 'Direct communication protocols', 'External prevention'],
+                benefits: ['Rapid response', 'Privileged information', 'Perimeter security']
+            },
+            14: {
+                description: 'Transformation of raw data into strategic information for accurate decision-making in the core business.',
+                features: ['Indicator dashboards', 'Basic predictive analysis', 'Strategic KPI mapping', 'Automated reports'],
+                benefits: ['Data-driven decisions', 'Bottleneck identification', 'Total visibility']
+            },
+            15: {
+                description: 'Specialized technical advice in pest and disease management and compliance with phytosanitary regulations for the agricultural sector.',
+                features: ['Biological and chemical control', 'Export farm certification', 'Management before ICA', 'Post-harvest handling'],
+                benefits: ['Crop protection', 'Access to foreign markets', 'Agricultural sustainability']
+            },
+            16: {
+                description: 'Professional debt recovery management through persuasive and legal methods, protecting the client relationship.',
+                features: ['Preventive collection', 'Administrative delinquency management', 'Legal collection', 'Recovery reporting'],
+                benefits: ['Cash flow improvement', 'Asset recovery', 'Professionalism in treatment']
+            },
+            17: {
+                description: 'Implementation and support of electronic invoicing systems under DIAN standards, ensuring tax compliance.',
+                features: ['Software configuration', 'Enablement before regulators', 'Digital signatures', 'Usage training'],
+                benefits: ['Tax compliance', 'Billing agility', 'Paper reduction']
+            },
+            18: {
+                description: 'Deep investigation of third parties, partners, or suppliers to prevent money laundering, terrorism financing, or reputational risks.',
+                features: ['Restrictive list validation', 'Real beneficiary tracking', 'Digital reputation analysis', 'Link mapping'],
+                benefits: ['Absolute transparency', 'Brand protection', 'Investment security']
+            },
+            19: {
+                description: 'Accounting outsourcing services for small and medium-sized enterprises, guaranteeing clear and timely financial statements.',
+                features: ['General accounting', 'Tax filing', 'Monthly management reports', 'Basic internal audit'],
+                benefits: ['Financial clarity', 'Avoids tax fines', 'Information for credit']
+            },
+            20: {
+                description: 'Consultancy for the optimal design of camera systems, alarms, and access controls based on real needs.',
+                features: ['Location plans', 'Hardware specifications', 'Network infrastructure calculation', 'Technical budget'],
+                benefits: ['Savings on unnecessary equipment', 'Total coverage', 'Vanguard technology']
+            },
+            21: {
+                description: 'Technical execution of electronic security projects, guaranteeing durable installations and secure configurations.',
+                features: ['Structured cabling', 'NVR/DVR configuration', 'System integration', 'Preventive maintenance'],
+                benefits: ['Installation warranty', 'Stable systems', 'Direct technical support']
+            },
+            22: {
+                description: 'Design and follow-up of the Strategic Road Safety Plan for companies with their own or outsourced vehicle fleet.',
+                features: ['Fleet diagnosis', 'Driver training', 'Preventive vehicle maintenance', 'Accident rate indicators'],
+                benefits: ['Accident reduction', 'Road law compliance', 'Brand protection']
+            },
+            23: {
+                description: 'Advanced implementation of Power BI solutions for visualizing high-complexity data in real-time.',
+                features: ['Data modeling', 'Advanced ETL', 'Dynamic visualizations', 'Mobile dashboard access'],
+                benefits: ['Business intelligence', '24/7 monitoring', 'Trend prediction']
+            },
+            24: {
+                description: 'Unified management of quality, environmental, and security systems to optimize organizational processes.',
+                features: ['Integrated documentation', 'Cross-audits', 'Non-conformity management', 'Continuous improvement'],
+                benefits: ['Process simplification', 'Less internal bureaucracy', 'Culture of excellence']
+            },
+            25: {
+                description: 'Utilization of unmanned aircraft technology for perimeter surveillance, asset inspection, and large area mapping.',
+                features: ['HD thermal cameras', 'Scheduled patrolling', 'Roof and height inspection', 'Real-time transmission'],
+                benefits: ['Wide spectrum surveillance', 'Physical personnel reduction', 'Accurate data']
+            }
+        }
     },
 
     // Team
