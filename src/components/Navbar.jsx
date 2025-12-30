@@ -8,9 +8,23 @@ import LanguageSelector from './LanguageSelector';
 const Navbar = () => {
     const [isScrolled, setIsScrolled] = useState(false);
     const [isVisible, setIsVisible] = useState(true);
+    const [isModalOpen, setIsModalOpen] = useState(false);
     const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
     const location = useLocation();
     const { t } = useLanguage();
+
+    // Monitorear si hay un modal abierto mediante la clase en el body
+    useEffect(() => {
+        const checkModal = () => {
+            setIsModalOpen(document.body.classList.contains('modal-open'));
+        };
+
+        // Crear un observador para detectar cambios en las clases del body
+        const observer = new MutationObserver(checkModal);
+        observer.observe(document.body, { attributes: true, attributeFilter: ['class'] });
+
+        return () => observer.disconnect();
+    }, []);
 
     // Enlaces de navegación con traducciones
     const navLinks = [
@@ -42,7 +56,7 @@ const Navbar = () => {
 
     return (
         <>
-            <nav className={`fixed top-0 w-full z-50 transition-all duration-500 ${isFloating ? 'pt-4' : 'pt-0'}`}>
+            <nav className={`fixed top-0 w-full z-50 transition-all duration-500 ${isFloating ? 'pt-4' : 'pt-0'} ${isModalOpen ? 'opacity-0 pointer-events-none -translate-y-full' : 'opacity-100 translate-y-0'}`}>
                 <div className={`
                     transition-all duration-500 mx-auto flex justify-between items-center
                     ${isFloating

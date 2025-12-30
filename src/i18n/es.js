@@ -158,7 +158,134 @@ const es = {
             { id: 23, title: 'Análisis Inteligente de Negocios PBI' },
             { id: 24, title: 'Implementación y Seguimiento de SIG' },
             { id: 25, title: 'Sobrevuelo con Drone' }
-        ]
+        ],
+        details: {
+            1: {
+                description: 'Evaluación exhaustiva de los protocolos, sistemas y personal de seguridad para identificar vulnerabilidades y riesgos potenciales en su organización.',
+                features: ['Análisis de perímetros físicos', 'Auditoría de sistemas electrónicos', 'Evaluación de protocolos de reacción', 'Mapeo de zonas críticas'],
+                benefits: ['Prevención de intrusiones', 'Optimización de recursos', 'Cumplimiento de estándares']
+            },
+            2: {
+                description: 'Diseño y puesta en marcha del Sistema de Gestión de Seguridad y Salud en el Trabajo bajo la normativa legal vigente (Resolución 0312).',
+                features: ['Mapeo de riesgos laborales', 'Capacitación de brigadas', 'Documentación legal completa', 'Auditorías de seguimiento'],
+                benefits: ['Evita sanciones legales', 'Protección del talento humano', 'Mejora la productividad']
+            },
+            3: {
+                description: 'Asesoría legal continua y especializada en derecho corporativo, civil y administrativo para blindar su empresa ante contingencias jurídicas.',
+                features: ['Revisión de contratos', 'Representación en litigios', 'Debida diligencia legal', 'Consultas preventivas'],
+                benefits: ['Blindaje patrimonial', 'Seguridad en transacciones', 'Reducción de costos legales']
+            },
+            4: {
+                description: 'Verificación rigurosa de antecedentes, referencias y perfiles para asegurar la confiabilidad del personal que ingresa a cargos críticos.',
+                features: ['Visita domiciliaria profesional', 'Estudio socioeconómico', 'Validación de antecedentes judiciales', 'Poligrafía técnica'],
+                benefits: ['Minimiza riesgo interno', 'Contratación confiable', 'Protección de activos']
+            },
+            5: {
+                description: 'Análisis técnico y forense de incidentes o siniestros para determinar causas reales y facilitar procesos de reclamación ante aseguradoras.',
+                features: ['Recolección de evidencias', 'Análisis reconstructivo', 'Informes periciales técnicos', 'Acompañamiento jurídico'],
+                benefits: ['Claridad en los hechos', 'Agiliza indemnizaciones', 'Lecciones aprendidas']
+            },
+            6: {
+                description: 'Proceso estratégico de búsqueda y evaluación de talento humano alineado con la cultura y objetivos de su organización.',
+                features: ['Pruebas psicotécnicas', 'Entrevistas por competencias', 'Headhunting especializado', 'Onboarding estratégico'],
+                benefits: ['Reducción de rotación', 'Talento de alta calidad', 'Ahorro en tiempos de búsqueda']
+            },
+            13: {
+                description: 'Gestión y coordinación de enlaces estratégicos con las instituciones públicas y de seguridad para fortalecer la protección del entorno empresarial.',
+                features: ['Mesas de seguridad', 'Redes de apoyo', 'Protocolos de comunicación directa', 'Prevención externa'],
+                benefits: ['Respuesta rápida', 'Información privilegiada', 'Seguridad perimetral']
+            },
+            18: {
+                description: 'Investigación profunda de terceros, socios o proveedores para prevenir riesgos de lavado de activos, financiación del terrorismo o reputacionales.',
+                features: ['Validación en listas restrictivas', 'Rastreo de beneficiarios reales', 'Análisis de reputación digital', 'Mapeo de vínculos'],
+                benefits: ['Transparencia absoluta', 'Protección de marca', 'Seguridad en inversiones']
+            },
+            25: {
+                description: 'Utilización de tecnología de aeronaves no tripuladas para vigilancia perimetral, inspección de activos y mapeo de áreas extensas.',
+                features: ['Cámaras térmicas HD', 'Patrullaje programado', 'Inspección de techos y alturas', 'Transmisión en tiempo real'],
+                benefits: ['Vigilancia de amplio espectro', 'Reducción de personal físico', 'Datos precisos']
+            },
+            7: {
+                description: 'Gestión integral del ciclo de vida del colaborador, desde la contratación hasta la liquidación, garantizando el cumplimiento de la legislación laboral.',
+                features: ['Gestión de nómina', 'Afiliaciones a seguridad social', 'Control de contratos', 'Liquidaciones prestacionales'],
+                benefits: ['Reducción de carga operativa', 'Mitigación de riesgos legales', 'Orden administrativo']
+            },
+            8: {
+                description: 'Evaluación y diagnóstico de la percepción de los empleados sobre su entorno de trabajo para mejorar la retención y productividad.',
+                features: ['Encuestas psicométricas', 'Focus groups', 'Análisis de liderazgo', 'Planes de mejora cultural'],
+                benefits: ['Aumento de la productividad', 'Reducción de rotación', 'Mejor ambiente de trabajo']
+            },
+            9: {
+                description: 'Asesoría experta en la selección y optimización de pólizas de seguros para garantizar la máxima cobertura al menor costo posible.',
+                features: ['Auditoría de pólizas actuales', 'Análisis de riesgos transferibles', 'Negociación con aseguradoras', 'Gestión de siniestros'],
+                benefits: ['Ahorro en primas', 'Coberturas reales', 'Tranquilidad financiera']
+            },
+            10: {
+                description: 'Estudios técnicos de seguridad física para instalaciones industriales, comerciales o residenciales de alta complejidad.',
+                features: ['Análisis de vulnerabilidades', 'Diseño de anillos de seguridad', 'Evaluación de control de acceso', 'Plan de emergencia'],
+                benefits: ['Protección de instalaciones', 'Disuasión de delitos', 'Continuidad del negocio']
+            },
+            11: {
+                description: 'Coordinación y gestión de exámenes médicos de ingreso, periódicos y de egreso para el personal, cumpliendo con la ley de salud ocupacional.',
+                features: ['Exámenes médicos generales', 'Pruebas específicas por cargo', 'Gestión de profesiogramas', 'Seguimiento de recomendaciones'],
+                benefits: ['Cumplimiento legal', 'Prevención de enfermedades laborales', 'Control de ausentismo']
+            },
+            12: {
+                description: 'Acompañamiento experto para la obtención de certificaciones internacionales de calidad, seguridad y medio ambiente (ISO, BASC, etc.).',
+                features: ['Diagnóstico inicial', 'Diseño documental', 'Capacitación de auditores internos', 'Acompañamiento en auditoría externa'],
+                benefits: ['Prestigio internacional', 'Acceso a nuevos mercados', 'Eficiencia operativa']
+            },
+            14: {
+                description: 'Transformación de datos crudos en información estratégica para la toma de decisiones acertadas en el core del negocio.',
+                features: ['Dashboard de indicadores', 'Análisis predictivo básico', 'Mapeo de KPI estratégicos', 'Reportes automáticos'],
+                benefits: ['Decisiones basadas en datos', 'Identificación de cuellos de botella', 'Visibilidad total']
+            },
+            15: {
+                description: 'Asesoría técnica especializada en el manejo de plagas, enfermedades y cumplimiento de normativas fitosanitarias para el sector agrícola.',
+                features: ['Control biológico y químico', 'Certificación de predios exportadores', 'Gestión ante el ICA', 'Manejo de post-cosecha'],
+                benefits: ['Protección de cultivos', 'Apertura a mercados externos', 'Sostenibilidad agrícola']
+            },
+            16: {
+                description: 'Gestión profesional de recuperación de cartera morosa mediante métodos persuasivos y legales, protegiendo la relación con el cliente.',
+                features: ['Cobro preventivo', 'Gestión administrativa de mora', 'Cobro jurídico', 'Reporteo de recuperaciones'],
+                benefits: ['Mejora del flujo de caja', 'Recuperación de activos', 'Profesionalismo en el trato']
+            },
+            17: {
+                description: 'Implementación y soporte de sistemas de facturación electrónica bajo los estándares de la DIAN, asegurando cumplimiento fiscal.',
+                features: ['Configuración de software', 'Habilitación ante entes de control', 'Firmas digitales', 'Capacitación de uso'],
+                benefits: ['Cumplimiento tributario', 'Agilidad en facturación', 'Reducción de papel']
+            },
+            19: {
+                description: 'Servicios de outsourcing contable para pequeñas y medianas empresas, garantizando estados financieros claros y oportunos.',
+                features: ['Contabilidad general', 'Declaración de impuestos', 'Informes de gestión mensual', 'Auditoría interna básica'],
+                benefits: ['Claridad financiera', 'Evita multas tributarias', 'Información para crédito']
+            },
+            20: {
+                description: 'Consultoría para el diseño óptimo de sistemas de cámaras, alarmas y controles de acceso basados en necesidades reales.',
+                features: ['Planos de ubicación', 'Especificaciones de hardware', 'Cálculo de infraestructura de red', 'Presupuesto técnico'],
+                benefits: ['Ahorro en equipos innecesarios', 'Cobertura total', 'Tecnología vanguardista']
+            },
+            21: {
+                description: 'Ejecución técnica de proyectos de seguridad electrónica, garantizando instalaciones duraderas y configuraciones seguras.',
+                features: ['Cableado estructurado', 'Configuración de NVR/DVR', 'Integración de sistemas', 'Mantenimiento preventivo'],
+                benefits: ['Garantía de instalación', 'Sistemas estables', 'Soporte técnico directo']
+            },
+            22: {
+                description: 'Diseño y seguimiento del Plan Estratégico de Seguridad Vial para empresas con flota de vehículos propia o tercerizada.',
+                features: ['Diagnóstico de flota', 'Capacitación de conductores', 'Mantenimiento preventivo vehicular', 'Indicadores de siniestralidad'],
+                benefits: ['Reducción de accidentes', 'Cumplimiento de ley vial', 'Protección de marca']
+            },
+            23: {
+                description: 'Implementación avanzada de soluciones Power BI para visualización de datos de alta complejidad en tiempo real.',
+                features: ['Modelado de datos', 'ETL avanzado', 'Visualizaciones dinámicas', 'Acceso móvil a tableros'],
+                benefits: ['Inteligencia de negocios', 'Monitoreo 24/7', 'Predicción de tendencias']
+            },
+            24: {
+                description: 'Gestión unificada de sistemas de calidad, ambiental y seguridad para optimizar los procesos organizacionales.',
+                features: ['Documentación integrada', 'Auditorías cruzadas', 'Gestión de no conformidades', 'Mejora continua'],
+                benefits: ['Simplificación de procesos', 'Menor burocracia interna', 'Cultura de excelencia']
+            }
+        }
     },
 
     // Equipo

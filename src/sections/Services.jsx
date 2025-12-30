@@ -1,7 +1,8 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { CheckCircle, ShieldCheck, ArrowRight, MessageSquare, Info, Sparkles, LayoutGrid } from 'lucide-react';
 import Reveal from '../components/Reveal';
+import ServiceModal from '../components/ServiceModal';
 import { servicesContent } from '../data/content';
 import { useLanguage } from '../context/LanguageContext';
 
@@ -9,6 +10,15 @@ const Services = () => {
     const location = useLocation();
     const isFullPage = location.pathname === '/servicios';
     const { t, tObj } = useLanguage();
+
+    // Estado para el modal de servicios
+    const [selectedService, setSelectedService] = useState(null);
+    const [isModalOpen, setIsModalOpen] = useState(false);
+
+    const openServiceDetails = (service, title) => {
+        setSelectedService({ ...service, displayTitle: title });
+        setIsModalOpen(true);
+    };
 
     // Obtener lista de servicios traducidos
     const translatedServices = tObj('services.servicesList') || [];
@@ -58,7 +68,10 @@ const Services = () => {
 
                         return (
                             <Reveal key={service.id} delay={index * 50}>
-                                <div className={`group transition-all duration-700 overflow-hidden flex flex-col h-full border ${isFullPage ? 'bg-white/5 border-white/5 hover:border-[#c5a67c]/30' : 'bg-white border-slate-100 hover:border-[#c5a67c]/30'} shadow-2xl`}>
+                                <div
+                                    onClick={() => openServiceDetails(service, displayTitle)}
+                                    className={`group cursor-pointer transition-all duration-700 overflow-hidden flex flex-col h-full border ${isFullPage ? 'bg-white/5 border-white/5 hover:border-[#c5a67c]/30' : 'bg-white border-slate-100 hover:border-[#c5a67c]/30'} shadow-2xl`}
+                                >
                                     {/* Imagen del Servicio - Formato Editorial */}
                                     <div className="relative aspect-[4/4] overflow-hidden">
                                         <div className="absolute inset-0 bg-[#02010a]/40 group-hover:bg-transparent transition-all duration-1000 z-10"></div>
@@ -90,7 +103,7 @@ const Services = () => {
                                             <div className="flex gap-2">
                                                 {[1, 2, 3].map(i => <div key={i} className="w-1 h-1 rounded-full bg-[#c5a67c]/50"></div>)}
                                             </div>
-                                            <div className="flex items-center gap-3 text-[10px] font-black uppercase tracking-widest text-[#c5a67c] opacity-0 group-hover:opacity-100 translate-x-4 group-hover:translate-x-0 transition-all duration-700">
+                                            <div className="flex items-center gap-3 text-[10px] font-black uppercase tracking-widest text-[#c5a67c] translate-x-4 group-hover:translate-x-0 group-hover:opacity-100 transition-all duration-700">
                                                 {t('services.detailsBtn')} <ArrowRight size={14} />
                                             </div>
                                         </div>
@@ -100,6 +113,15 @@ const Services = () => {
                         );
                     })}
                 </div>
+
+                {/* Modal de Detalles de Servicio */}
+                <ServiceModal
+                    isOpen={isModalOpen}
+                    onClose={() => setIsModalOpen(false)}
+                    serviceId={selectedService?.id}
+                    title={selectedService?.displayTitle}
+                    image={selectedService?.image}
+                />
 
                 {/* Botón Explorar Todo (solo en Inicio) */}
                 {!isFullPage && (
